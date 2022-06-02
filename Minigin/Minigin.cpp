@@ -1,9 +1,9 @@
 #include "MiniginPCH.h"
 #include "Minigin.h"
 
-#include <steam_api.h>
+#include <SDL_mixer.h>
 #include <thread>
-
+#include "Sound.h"
 #include "InputManager.h"
 #include "SceneManager.h"
 #include "Renderer.h"
@@ -18,7 +18,6 @@
 #include "HealthDisplayComponent.h"
 #include "PeterPepper.h"
 #include "PointsDisplayComponent.h"
-
 using namespace std;
 
 void PrintSDLVersion()
@@ -58,6 +57,11 @@ void dae::Minigin::Initialize()
 		throw std::runtime_error(std::string("SDL_CreateWindow Error: ") + SDL_GetError());
 	}
 
+	if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096) == -1)
+	{
+		throw std::runtime_error(std::string("SDL_Init Error: ") + SDL_GetError());
+	}
+
 	Renderer::GetInstance().Init(m_Window);
 	
 }
@@ -74,6 +78,7 @@ void dae::Minigin::Cleanup()
 	Renderer::GetInstance().Destroy();
 	SDL_DestroyWindow(m_Window);
 	m_Window = nullptr;
+	Mix_Quit();
 	SDL_Quit();
 }
 

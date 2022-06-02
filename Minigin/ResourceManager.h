@@ -2,6 +2,7 @@
 #include "Singleton.h"
 namespace dae
 {
+	class Sound;
 	class Texture2D;
 	class Font;
 	class ResourceManager final : public Singleton<ResourceManager>

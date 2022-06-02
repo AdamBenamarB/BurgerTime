@@ -12,9 +12,16 @@
 #include "SceneManager.h"
 #include "TextComponent.h"
 #include "RenderComponent.h"
+#include "ServiceLocator.h"
+#include "Sound.h"
 
 void Game::LoadGame() const
 {
+	//dae::ServiceLocator::RegisterSoundSystem(new dae::SoundSystem());
+	//dae::ServiceLocator::GetSoundSystem().Play(sound, 64);
+	//sound->Play(124);
+	auto sound = dae::Sound("C:\\School\\Prog4\\BurgerTime\\Data\\test2.wav");
+	sound.Play(100);
 	//BACKGROUND
 	auto& scene = dae::SceneManager::GetInstance().CreateScene("Demo");
 	auto go = std::make_shared<dae::GameObject>();

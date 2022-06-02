@@ -62,7 +62,6 @@ bool dae::InputManager::HandleInput()
 		}
 		ImGui_ImplSDL2_ProcessEvent(&e);
 		if (e.type == SDL_KEYDOWN) {
-
 		}
 		if (e.type == SDL_MOUSEBUTTONDOWN) {
 

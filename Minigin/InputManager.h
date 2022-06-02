@@ -17,6 +17,7 @@ namespace dae
 
 		bool IsPressed(XBox360Controller::ControllerButton button,int controllerIdx);
 
+
 		void AddCommand(Input::ControllerKey controllerKey, std::unique_ptr<Command> command);
 		void RemoveCommand(Input::ControllerKey controllerKey);
 
