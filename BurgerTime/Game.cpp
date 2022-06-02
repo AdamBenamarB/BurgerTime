@@ -51,7 +51,7 @@ void Game::LoadGame() const
 	auto command = std::make_unique<dae::KillCommand>(go);
 	dae::InputManager::GetInstance().AddCommand(controllerkey,std::move(command));
 	//Add points
-	controllerkey = Input::ControllerKey({ 0, dae::XBox360Controller::ControllerButton::ButtonB,Input::KeyState::OnPressed });
+	controllerkey = Input::ControllerKey({ 0, dae::XBox360Controller::ControllerButton::ButtonB,Input::KeyState::Held });
 	auto pointcommand = std::make_unique<dae::AddPointsCommand>(go);
 	dae::InputManager::GetInstance().AddCommand(controllerkey, std::move(pointcommand));
 
