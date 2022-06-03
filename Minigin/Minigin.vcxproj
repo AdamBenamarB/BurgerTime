@@ -259,7 +259,7 @@ xcopy $(SolutionDir)3rdParty\steamworks\redistributable_bin\win64\*.dll $(Output
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="ServiceLocator.h" />
     <ClInclude Include="Singleton.h" />
-    <ClInclude Include="Sound.h" />
+    <ClInclude Include="AudioClip.h" />
     <ClInclude Include="SoundSystem.h" />
     <ClInclude Include="Subject.h" />
     <ClInclude Include="TextComponent.h" />
@@ -348,7 +348,7 @@ xcopy $(SolutionDir)3rdParty\steamworks\redistributable_bin\win64\*.dll $(Output
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="ServiceLocator.cpp" />
-    <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="AudioClip.cpp" />
     <ClCompile Include="SoundSystem.cpp" />
     <ClCompile Include="Subject.cpp" />
     <ClCompile Include="TextComponent.cpp" />

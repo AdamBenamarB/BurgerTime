@@ -14,7 +14,7 @@ namespace dae {
 		ServiceLocator& operator=(const ServiceLocator& other) = delete;
 		ServiceLocator& operator=(ServiceLocator&& other) = delete;
 
-		static SoundSystem& GetSoundSystem() { return*m_SSInstance; }
+		static SoundSystem& GetSoundSystem() { return* m_SSInstance; }
 		static void RegisterSoundSystem(SoundSystem* ss) {
 			m_SSInstance = ss == nullptr ? &m_DefaultSS : ss;
 		}

@@ -3,7 +3,6 @@
 
 #include <SDL_mixer.h>
 #include <thread>
-#include "Sound.h"
 #include "InputManager.h"
 #include "SceneManager.h"
 #include "Renderer.h"

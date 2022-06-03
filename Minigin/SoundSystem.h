@@ -1,17 +1,31 @@
 #pragma once
+#include <mutex>
+#include <string>
+#include <thread>
 
 namespace dae {
-	class Sound;
+	class AudioClip;
 	class SoundSystem
 	{
 	public:
-		
-		//virtual ~SoundSystem();
-		//virtual void Play(const std::shared_ptr<Sound> sound, int volume);
+		SoundSystem();
+
+		virtual int AddSound(std::string loc);
+		virtual void Play(int id,int volume);
+		~SoundSystem();
+
+	private:
+		void CheckQueue();
+
+		std::vector<std::shared_ptr<AudioClip>> m_Clips{};
+		std::vector<std::pair<int,int>> m_ToBePlayed{};
+		std::thread m_Thread{};
+		std::mutex m_Mutex{};
 	};
 
 	class NullSoundSystem : public SoundSystem
 	{
-		//void Play(const std::shared_ptr<Sound>, int) override {}
+		virtual int AddSound(std::string) override { return -1; }
+		virtual void Play(int, int) override{}
 	};
 }

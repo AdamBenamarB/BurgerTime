@@ -8,3 +8,4 @@ dae::ServiceLocator::~ServiceLocator()
 {
 	delete m_SSInstance;
 }
+
