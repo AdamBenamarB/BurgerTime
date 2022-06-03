@@ -19,7 +19,9 @@ namespace dae {
 
         void SetState(State state) { m_State = state; }
     private:
+        void HandleMovement(float deltaTime);
+        void HandleCollision(float deltaTime);
         State m_State = State::idle;
-        float m_Speed = 30.f;
+        float m_Speed = 50.f;
     };
 }

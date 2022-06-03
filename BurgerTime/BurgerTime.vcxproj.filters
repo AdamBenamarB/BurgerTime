@@ -33,6 +33,18 @@
     <ClCompile Include="PeterPepperComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="Wall.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="Ladder.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -43,6 +55,18 @@
     </ClInclude>
     <ClInclude Include="PeterPepperComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="Ladder.h">
+      <Filter>Prefabs</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

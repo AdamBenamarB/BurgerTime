@@ -1,7 +1,4 @@
 #pragma once
-#include <memory>
-
-#include "Transform.h"
 
 namespace dae
 {
@@ -17,6 +14,5 @@ namespace dae
 		PeterPepper& operator=(PeterPepper&& other) noexcept = delete;
 	private:
 		void Initialize(dae::Scene& scene);
-		std::shared_ptr<dae::Transform> m_Transform{};
 	};
 }

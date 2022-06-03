@@ -19,12 +19,12 @@ void dae::PeterPepper::Initialize(dae::Scene& scene)
 	go->AddComponent<PeterPepperComponent>();
 	auto rc = go->AddComponent<dae::RenderComponent>();
 	rc->SetTexture("\\Sprites\\PeterPepper\\peter.png");
-	rc->SetDimensions(64, 64);
+	rc->SetDimensions(64, 62);
 
 	auto col = go->AddComponent<CollisionComponent>();
-	col->SetSize(64, 64);
-	
-	scene.Add(go);
+	col->SetSize(64,64);
+	go->SetTag("PETER");
+	scene.Add(go,0);
 
 	InputManager::GetInstance().AddController(1);
 	auto controllerkey = Input::ControllerKey({0, dae::XBox360Controller::ControllerButton::DpadLeft,Input::KeyState::OnPressed});

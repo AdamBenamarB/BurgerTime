@@ -33,12 +33,14 @@ namespace dae
 		void RemoveChild(int index);
 		void AddChild(GameObject* go);
 
-
+		void SetTag(std::string tag) { m_Tag = tag; }
+		const std::string& GetTag() const { return m_Tag; }
 	private:
 		std::vector<std::shared_ptr<Component>> m_Components{};
 		GameObject* m_Parent{};
 		std::vector<GameObject*> m_Children{};
 		Transform* m_Transform;
+		std::string m_Tag{"NONE"};
 	};
 }
 

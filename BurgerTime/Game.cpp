@@ -6,7 +6,9 @@
 #include "GameObject.h"
 #include "HealthDisplayComponent.h"
 #include "InputManager.h"
+#include "Ladder.h"
 #include "PeterPepper.h"
+#include "Platform.h"
 #include "PointsDisplayComponent.h"
 #include "ResourceManager.h"
 #include "Scene.h"
@@ -14,22 +16,18 @@
 #include "TextComponent.h"
 #include "RenderComponent.h"
 #include "ServiceLocator.h"
+#include "Wall.h"
 
 void Game::LoadGame() const
 {
 	auto& scene = dae::SceneManager::GetInstance().CreateScene("Demo");
 	dae::PeterPepper peter{ scene };
-
-	/*auto go = std::make_shared<dae::GameObject>();
-	auto rc = go->AddComponent<dae::RenderComponent>();
-	rc->SetTexture("\\Sprites\\PeterPepper\\peter.png");
-	rc->SetDimensions(64, 64);
-
-	auto col = go->AddComponent<dae::CollisionComponent>();
-	col->SetSize(64, 64);
-
-	scene.Add(go);*/
-
+	//dae::Wall wall{ scene,Vec2{128,0} };
+	dae::Platform plat{ scene,Vec2{0,0} };
+	//dae::Platform plat2{ scene,Vec2{64,0} };
+	dae::Ladder ladder2{ scene,Vec2{64,64} };
+	dae::Ladder ladder{ scene,Vec2{64,0} };
+	dae::Wall wall{ scene,Vec2{64,128} };
 	//dae::ServiceLocator::RegisterSoundSystem(new dae::SoundSystem());
 	//dae::ServiceLocator::GetSoundSystem().Play(sound, 64);
 	//sound->Play(124);

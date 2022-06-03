@@ -7,7 +7,6 @@
 #include "Renderer.h"
 #include "Texture2D.h"
 #include "Font.h"
-#include "Sound.h"
 
 void dae::ResourceManager::Init(const std::string& dataPath)
 {

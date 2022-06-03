@@ -10,6 +10,11 @@ namespace dae
 		friend Scene& SceneManager::CreateScene(const std::string& name);
 	public:
 		void Add(const std::shared_ptr<GameObject>& object);
+		void Add(const std::shared_ptr<GameObject>& object,int renderPriority);
+
+		std::vector<std::shared_ptr<GameObject>>&GetObjects() { return m_Objects; }
+		std::string& GetName() { return m_Name; }
+
 
 		void Update(float deltaTime);
 		void FixedUpdate(float timeStep);
@@ -25,6 +30,9 @@ namespace dae
 		explicit Scene(const std::string& name);
 
 		std::string m_Name;
+		std::vector < std::shared_ptr<GameObject>> m_ObjectsFirst{};
+		std::vector < std::shared_ptr<GameObject>> m_ObjectsSecond{};
+		std::vector < std::shared_ptr<GameObject>> m_ObjectsThird{};
 		std::vector < std::shared_ptr<GameObject>> m_Objects{};
 
 		static unsigned int m_IdCounter; 

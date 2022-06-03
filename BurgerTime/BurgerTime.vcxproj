@@ -168,12 +168,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Ladder.cpp" />
+    <ClCompile Include="Level.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="PeterPepper.cpp" />
     <ClCompile Include="PeterPepperComponent.cpp" />
+    <ClCompile Include="Platform.cpp" />
+    <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Ladder.h" />
+    <ClInclude Include="Platform.h" />
+    <ClInclude Include="Wall.h" />
+    <ClInclude Include="Level.h" />
     <ClInclude Include="PeterPepper.h" />
     <ClInclude Include="PeterPepperComponent.h" />
   </ItemGroup>
