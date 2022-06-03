@@ -1,5 +1,6 @@
 #include "Game.h"
 
+#include "CollisionComponent.h"
 #include "FPS.h"
 #include "Minigin.h"
 #include "GameObject.h"
@@ -18,6 +19,17 @@ void Game::LoadGame() const
 {
 	auto& scene = dae::SceneManager::GetInstance().CreateScene("Demo");
 	dae::PeterPepper peter{ scene };
+
+	/*auto go = std::make_shared<dae::GameObject>();
+	auto rc = go->AddComponent<dae::RenderComponent>();
+	rc->SetTexture("\\Sprites\\PeterPepper\\peter.png");
+	rc->SetDimensions(64, 64);
+
+	auto col = go->AddComponent<dae::CollisionComponent>();
+	col->SetSize(64, 64);
+
+	scene.Add(go);*/
+
 	//dae::ServiceLocator::RegisterSoundSystem(new dae::SoundSystem());
 	//dae::ServiceLocator::GetSoundSystem().Play(sound, 64);
 	//sound->Play(124);

@@ -1,6 +1,7 @@
 #include "PeterPepperComponent.h"
 
 #include "GameObject.h"
+#include "SceneManager.h"
 
 dae::PeterPepperComponent::PeterPepperComponent(GameObject* owner)
 	:Component(owner)

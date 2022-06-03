@@ -15,7 +15,7 @@ void dae::RenderComponent::Render() const
 	{
 		auto pos = m_GameObject->GetComponent<Transform>()->GetPosition();
 
-		Renderer::GetInstance().RenderTexture(*m_Texture, pos.x, pos.y);
+		Renderer::GetInstance().RenderTexture(*m_Texture, pos.x, pos.y,m_Width,m_Height);
 	}
 }
 
@@ -27,4 +27,10 @@ void dae::RenderComponent::SetTexture(std::shared_ptr<Texture2D> texture)
 void dae::RenderComponent::SetTexture(const std::string& filename)
 {
 	m_Texture = ResourceManager::GetInstance().LoadTexture(filename);
+}
+
+void dae::RenderComponent::SetDimensions(float width, float height)
+{
+	m_Width = width;
+	m_Height = height;
 }

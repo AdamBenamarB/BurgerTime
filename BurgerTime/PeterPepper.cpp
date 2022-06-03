@@ -1,5 +1,6 @@
 #include "PeterPepper.h"
 
+#include "CollisionComponent.h"
 #include "RenderComponent.h"
 #include "GameObject.h"
 #include "Input.h"
@@ -15,9 +16,13 @@ dae::PeterPepper::PeterPepper(dae::Scene& scene)
 void dae::PeterPepper::Initialize(dae::Scene& scene)
 {
 	auto go = std::make_shared<dae::GameObject>();
-	auto rc = go->AddComponent<dae::RenderComponent>();
 	go->AddComponent<PeterPepperComponent>();
+	auto rc = go->AddComponent<dae::RenderComponent>();
 	rc->SetTexture("\\Sprites\\PeterPepper\\peter.png");
+	rc->SetDimensions(64, 64);
+
+	auto col = go->AddComponent<CollisionComponent>();
+	col->SetSize(64, 64);
 	
 	scene.Add(go);
 
@@ -29,7 +34,6 @@ void dae::PeterPepper::Initialize(dae::Scene& scene)
 	controllerkey = Input::ControllerKey({ 0, dae::XBox360Controller::ControllerButton::DpadLeft,Input::KeyState::OnReleased });
 	auto command2 = std::make_unique<dae::Idle>(go);
 	dae::InputManager::GetInstance().AddCommand(controllerkey, std::move(command2));
-
 
 	controllerkey = Input::ControllerKey({ 0, dae::XBox360Controller::ControllerButton::DpadRight,Input::KeyState::OnPressed });
 	auto command3 = std::make_unique<dae::MoveRight>(go);
