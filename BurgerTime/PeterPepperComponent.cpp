@@ -66,7 +66,10 @@ void dae::PeterPepperComponent::HandleMovement(float deltaTime)
 		{
 		if (m_GameObject->GetComponent<CollisionComponent>()->IsOverlapping(obj.get()))
 			if (obj->GetTag().compare("PLATFORM") == 0)
-				onPlatform = true;
+			{
+				if (!m_GameObject->GetComponent<CollisionComponent>()->IsUnder(obj.get()))
+					onPlatform = true;
+			}
 			else if (obj->GetTag().compare("LADDER") == 0)
 				if (abs(obj->GetTransform()->GetPosition().x - m_GameObject->GetTransform()->GetPosition().x)<5.f)
 					onLadder = true;

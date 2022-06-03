@@ -24,7 +24,7 @@ void Game::LoadGame() const
 	dae::PeterPepper peter{ scene };
 	//dae::Wall wall{ scene,Vec2{128,0} };
 	dae::Platform plat{ scene,Vec2{0,0} };
-	//dae::Platform plat2{ scene,Vec2{64,0} };
+	dae::Platform plat2{ scene,Vec2{64,0} };
 	dae::Ladder ladder2{ scene,Vec2{64,64} };
 	dae::Ladder ladder{ scene,Vec2{64,0} };
 	dae::Wall wall{ scene,Vec2{64,128} };

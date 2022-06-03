@@ -31,11 +31,7 @@ bool dae::CollisionComponent::IsOverlapping(GameObject* other)
 	otherpos.x += othercol->m_OffsetX;
 	otherpos.y += othercol->m_OffsetY;
 	glm::vec3 othercorner{ otherpos.x+ othercol->m_Width,otherpos.y + othercol->m_Height,otherpos.z };
-	if(other->GetTag()=="PLATFORM")
-	{
-		std::cout << "PLATFORM";
-	}
-
+	
 	if (pos.x > othercorner.x || otherpos.x > cornerpos.x)
 		return false;
 
@@ -45,3 +41,24 @@ bool dae::CollisionComponent::IsOverlapping(GameObject* other)
 	return true;
 }
 
+bool dae::CollisionComponent::IsUnder(GameObject* other)
+{
+	if (m_GameObject == other)
+		return false;
+
+	auto pos = m_GameObject->GetTransform()->GetPosition();
+	pos.x += m_OffsetX;
+	pos.y += m_OffsetY;
+	glm::vec3 cornerpos{ pos.x + m_Width,pos.y + m_Height,pos.z };
+	auto othercol = other->GetComponent<CollisionComponent>();
+	auto otherpos = other->GetTransform()->GetPosition();
+	otherpos.x += othercol->m_OffsetX;
+	otherpos.y += othercol->m_OffsetY;
+	glm::vec3 othercorner{ otherpos.x + othercol->m_Width,otherpos.y + othercol->m_Height,otherpos.z };
+
+	
+	if (cornerpos.y > othercorner.y)
+		return true;
+
+	return false;
+}

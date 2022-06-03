@@ -10,6 +10,7 @@ namespace dae {
         void SetOffset(float x, float y);
 
         bool IsOverlapping(GameObject* other);
+        bool IsUnder(GameObject* other);
     private:
         float m_Width{},
             m_Height{};
