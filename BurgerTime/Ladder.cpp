@@ -23,6 +23,6 @@ void dae::Ladder::Initialize(dae::Scene& scene, Vec2 loc)
 	go->GetTransform()->SetPosition(loc.x, loc.y, 0);
 
 	go->SetTag("LADDER");
-	scene.Add(go);
+	scene.Add(go,2);
 
 }

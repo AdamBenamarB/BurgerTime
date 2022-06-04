@@ -28,10 +28,15 @@ void Game::LoadGame() const
 	//dae::Wall wall{ scene,Vec2{128,0} };
 	dae::Platform plat{ scene,Vec2{0,0} };
 	dae::Platform plat2{ scene,Vec2{64,0} };
+	dae::Platform plat3{ scene,Vec2{0,128} };
+	dae::Platform plat4{ scene,Vec2{64,128} };
+	dae::Platform plat5{ scene,Vec2{128,196} };
+	dae::Platform plat6{ scene,Vec2{64,64} };
 	dae::Ladder ladder2{ scene,Vec2{64,64} };
 	dae::Ladder ladder{ scene,Vec2{64,0} };
-	dae::Wall wall{ scene,Vec2{64,128} };
+	//dae::Wall wall{ scene,Vec2{64,128} };
 	dae::Bun bun{ scene, Vec2{128,0} };
+	dae::Bun bun2{ scene,Vec2{128,128} };
 
 	/*auto go = std::make_shared<dae::GameObject>();
 	go->AddComponent<dae::IngredientComponent>();*/

@@ -4,6 +4,7 @@
 
 #include "CollisionComponent.h"
 #include "GameObject.h"
+#include "PlatformComponent.h"
 #include "Scene.h"
 #include "SceneManager.h"
 
@@ -62,6 +63,7 @@ void dae::PeterPepperComponent::HandleMovement(float deltaTime)
 	bool onPlatform = false;
 	bool onLadder = false;
 	float ladderX{};
+	float platformY{};
 
 	for (auto& obj : SceneManager::GetInstance().GetActiveScene().GetObjects())
 		{
@@ -69,7 +71,10 @@ void dae::PeterPepperComponent::HandleMovement(float deltaTime)
 			if (obj->GetTag().compare("PLATFORM") == 0)
 			{
 				if (!m_GameObject->GetComponent<CollisionComponent>()->IsUnder(obj.get()))
+				{
 					onPlatform = true;
+					platformY = obj->GetComponent<PlatformComponent>()->GetFloorPos().y;
+				}
 			}
 			else if (obj->GetTag().compare("LADDER") == 0)
 			{
@@ -91,12 +96,14 @@ void dae::PeterPepperComponent::HandleMovement(float deltaTime)
 		if (!onPlatform)
 			return;
 		pos.x -= m_Speed * deltaTime;
+		pos.y = platformY + 60;
 		m_GameObject->GetTransform()->SetPosition(pos.x, pos.y, pos.z);
 		break;
 	case State::right:
 		if (!onPlatform)
 			return;
 		pos.x += m_Speed * deltaTime;
+		pos.y = platformY + 60;
 		m_GameObject->GetTransform()->SetPosition(pos.x, pos.y, pos.z);
 		break;
 	case State::up:

@@ -176,6 +176,7 @@
     <ClCompile Include="PeterPepper.cpp" />
     <ClCompile Include="PeterPepperComponent.cpp" />
     <ClCompile Include="Platform.cpp" />
+    <ClCompile Include="PlatformComponent.cpp" />
     <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +185,7 @@
     <ClInclude Include="IngredientComponent.h" />
     <ClInclude Include="Ladder.h" />
     <ClInclude Include="Platform.h" />
+    <ClInclude Include="PlatformComponent.h" />
     <ClInclude Include="Wall.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="PeterPepper.h" />

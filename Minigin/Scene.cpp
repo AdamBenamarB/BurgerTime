@@ -23,7 +23,7 @@ void Scene::Add(const std::shared_ptr<GameObject>& object, int renderLayer)
 		m_ObjectsFirst.push_back(object);
 	if (renderLayer == 1)
 		m_ObjectsSecond.push_back(object);
-	if (renderLayer == 2)
+	if (renderLayer >= 2)
 		m_ObjectsThird.push_back(object);
 	m_Objects.push_back(object);
 }
@@ -55,10 +55,6 @@ void Scene::Render() const
 		{
 			render->Render();
 		}
-		/*if (auto render = object->GetComponent<RenderComponent>())
-		{
-			render->Render();
-		}*/
 
 	}
 

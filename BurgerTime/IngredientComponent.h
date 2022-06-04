@@ -20,6 +20,8 @@ namespace dae {
         void Update(float deltaTime) override;
         void SetCollisions(std::vector<CollisionComponent*>& cols);
         void SetSprites(std::vector<RenderComponent*>& sprites);
+
+        void SetState(State state) { m_State = state; }
     private:
         void HandleMovement(float deltaTime);
         void HandleCollision(float deltaTime);
@@ -28,5 +30,9 @@ namespace dae {
         std::vector<CollisionComponent*> m_Collisions{};
         std::vector<RenderComponent*> m_Sprites{};
         bool m_DropStates[4]{false,false,false,false};//true is dropped
+
+        float m_FallSpeed{ 50.f };
+
+        GameObject* m_CollidedIngredient{ nullptr };
     };
 }
