@@ -19,7 +19,7 @@ void dae::PeterPepper::Initialize(dae::Scene& scene)
 	go->AddComponent<PeterPepperComponent>();
 	auto rc = go->AddComponent<dae::RenderComponent>();
 	rc->SetTexture("\\Sprites\\PeterPepper\\peter.png");
-	rc->SetDimensions(64, 62);
+	rc->SetDimensions(m_Height, m_Width);
 
 	auto col = go->AddComponent<CollisionComponent>();
 	col->SetSize(64,64);

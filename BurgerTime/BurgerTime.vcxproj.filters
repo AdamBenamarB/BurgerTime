@@ -45,6 +45,12 @@
     <ClCompile Include="Ladder.cpp">
       <Filter>Prefabs</Filter>
     </ClCompile>
+    <ClCompile Include="IngredientComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Bun.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -66,6 +72,12 @@
       <Filter>Prefabs</Filter>
     </ClInclude>
     <ClInclude Include="Ladder.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="IngredientComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Bun.h">
       <Filter>Prefabs</Filter>
     </ClInclude>
   </ItemGroup>

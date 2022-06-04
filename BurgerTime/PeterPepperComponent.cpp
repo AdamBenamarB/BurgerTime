@@ -61,6 +61,7 @@ void dae::PeterPepperComponent::HandleMovement(float deltaTime)
 	auto pos = m_GameObject->GetTransform()->GetPosition();
 	bool onPlatform = false;
 	bool onLadder = false;
+	float ladderX{};
 
 	for (auto& obj : SceneManager::GetInstance().GetActiveScene().GetObjects())
 		{
@@ -71,8 +72,15 @@ void dae::PeterPepperComponent::HandleMovement(float deltaTime)
 					onPlatform = true;
 			}
 			else if (obj->GetTag().compare("LADDER") == 0)
-				if (abs(obj->GetTransform()->GetPosition().x - m_GameObject->GetTransform()->GetPosition().x)<5.f)
+			{
+				ladderX = obj->GetTransform()->GetPosition().x;
+
+				if (abs(ladderX - m_GameObject->GetTransform()->GetPosition().x) < 5.f)
+				{
 					onLadder = true;
+				}
+				
+			}
 		}
 
 	switch(m_State)
@@ -95,13 +103,13 @@ void dae::PeterPepperComponent::HandleMovement(float deltaTime)
 		if (!onLadder)
 			return;
 		pos.y -= m_Speed * deltaTime;
-		m_GameObject->GetTransform()->SetPosition(pos.x, pos.y, pos.z);
+		m_GameObject->GetTransform()->SetPosition(ladderX, pos.y, pos.z);
 		break;
 	case State::down:
 		if (!onLadder)
 			return;
 		pos.y += m_Speed * deltaTime;
-		m_GameObject->GetTransform()->SetPosition(pos.x, pos.y, pos.z);
+		m_GameObject->GetTransform()->SetPosition(ladderX, pos.y, pos.z);
 		break;
 	}
 }

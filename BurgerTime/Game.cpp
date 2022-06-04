@@ -1,5 +1,6 @@
 #include "Game.h"
 
+#include "Bun.h"
 #include "CollisionComponent.h"
 #include "FPS.h"
 #include "Minigin.h"
@@ -17,6 +18,8 @@
 #include "RenderComponent.h"
 #include "ServiceLocator.h"
 #include "Wall.h"
+#include "GameObject.h"
+#include "IngredientComponent.h"
 
 void Game::LoadGame() const
 {
@@ -28,6 +31,10 @@ void Game::LoadGame() const
 	dae::Ladder ladder2{ scene,Vec2{64,64} };
 	dae::Ladder ladder{ scene,Vec2{64,0} };
 	dae::Wall wall{ scene,Vec2{64,128} };
+	dae::Bun bun{ scene, Vec2{128,0} };
+
+	/*auto go = std::make_shared<dae::GameObject>();
+	go->AddComponent<dae::IngredientComponent>();*/
 	//dae::ServiceLocator::RegisterSoundSystem(new dae::SoundSystem());
 	//dae::ServiceLocator::GetSoundSystem().Play(sound, 64);
 	//sound->Play(124);

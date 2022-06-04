@@ -167,7 +167,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bun.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="IngredientComponent.cpp" />
     <ClCompile Include="Ladder.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -177,7 +179,9 @@
     <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bun.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="IngredientComponent.h" />
     <ClInclude Include="Ladder.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="Wall.h" />

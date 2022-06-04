@@ -13,10 +13,14 @@ namespace dae
 		void SetTexture(const std::shared_ptr<Texture2D> texture);
 		void SetTexture(const std::string& filename);
 		void SetDimensions(float width, float height);
+		void SetOffsetX(float x);
+		void SetOffsetY(float y);
 	private:
 		std::shared_ptr<Texture2D> m_Texture;
 		float m_Width{ 1 },
 			m_Height{ 1 };
+		float m_OffsetX{},
+			m_OffsetY{};
 	};
 }
 

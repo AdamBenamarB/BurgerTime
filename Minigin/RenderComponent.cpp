@@ -15,7 +15,7 @@ void dae::RenderComponent::Render() const
 	{
 		auto pos = m_GameObject->GetComponent<Transform>()->GetPosition();
 
-		Renderer::GetInstance().RenderTexture(*m_Texture, pos.x, pos.y,m_Width,m_Height);
+		Renderer::GetInstance().RenderTexture(*m_Texture, pos.x+m_OffsetX, pos.y+m_OffsetY,m_Width,m_Height);
 	}
 }
 
@@ -33,4 +33,14 @@ void dae::RenderComponent::SetDimensions(float width, float height)
 {
 	m_Width = width;
 	m_Height = height;
+}
+
+void dae::RenderComponent::SetOffsetX(float x)
+{
+	m_OffsetX = x;
+}
+
+void dae::RenderComponent::SetOffsetY(float y)
+{
+	m_OffsetY = y;
 }

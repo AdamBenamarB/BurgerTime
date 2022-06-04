@@ -51,16 +51,20 @@ void Scene::Render() const
 	
 	for (const auto& object : m_ObjectsThird)
 	{
-		if (auto render = object->GetComponent<RenderComponent>())
+		for(auto render : object->GetComponents<RenderComponent>())
 		{
 			render->Render();
 		}
+		/*if (auto render = object->GetComponent<RenderComponent>())
+		{
+			render->Render();
+		}*/
 
 	}
 
 	for (const auto& object : m_ObjectsSecond)
 	{
-		if (auto render = object->GetComponent<RenderComponent>())
+		for (auto render : object->GetComponents<RenderComponent>())
 		{
 			render->Render();
 		}
@@ -69,7 +73,7 @@ void Scene::Render() const
 	
 	for (const auto& object : m_ObjectsFirst)
 	{
-		if (auto render = object->GetComponent<RenderComponent>())
+		for (auto render : object->GetComponents<RenderComponent>())
 		{
 			render->Render();
 		}

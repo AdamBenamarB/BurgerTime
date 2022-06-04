@@ -14,5 +14,8 @@ namespace dae
 		PeterPepper& operator=(PeterPepper&& other) noexcept = delete;
 	private:
 		void Initialize(dae::Scene& scene);
+
+		float m_Height{ 62 },
+			m_Width{ 64 };
 	};
 }
