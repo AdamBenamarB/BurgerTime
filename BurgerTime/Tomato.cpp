@@ -1,4 +1,4 @@
-#include "Bun.h"
+﻿#include "Tomato.h"
 
 #include "CollisionComponent.h"
 #include "RenderComponent.h"
@@ -7,12 +7,12 @@
 #include "Input.h"
 #include "Scene.h"
 
-dae::Bun::Bun(dae::Scene& scene, Vec2 loc)
+dae::Tomato::Tomato(dae::Scene& scene, Vec2 loc)
 {
 	Initialize(scene, loc);
 }
 
-void dae::Bun::Initialize(dae::Scene& scene, Vec2 loc)
+void dae::Tomato::Initialize(dae::Scene& scene, Vec2 loc)
 {
 	std::vector<RenderComponent*> sprites;
 	std::vector<CollisionComponent*> cols;
@@ -20,27 +20,27 @@ void dae::Bun::Initialize(dae::Scene& scene, Vec2 loc)
 
 	//SPRITES
 	auto rc = go->AddComponent<dae::RenderComponent>();
-	rc->SetTexture("\\Sprites\\Ingredients\\bun0.png");
+	rc->SetTexture("\\Sprites\\Ingredients\\tomato0.png");
 	rc->SetDimensions(16, 16);
 
 	sprites.push_back(rc);
 
 	rc = go->AddComponent<dae::RenderComponent>();
-	rc->SetTexture("\\Sprites\\Ingredients\\bun1.png");
+	rc->SetTexture("\\Sprites\\Ingredients\\tomato1.png");
 	rc->SetDimensions(16, 16);
 	rc->SetOffsetX(16);
 
 	sprites.push_back(rc);
 
 	rc = go->AddComponent<dae::RenderComponent>();
-	rc->SetTexture("\\Sprites\\Ingredients\\bun2.png");
+	rc->SetTexture("\\Sprites\\Ingredients\\tomato2.png");
 	rc->SetDimensions(16, 16);
 	rc->SetOffsetX(32);
 
 	sprites.push_back(rc);
 
 	rc = go->AddComponent<dae::RenderComponent>();
-	rc->SetTexture("\\Sprites\\Ingredients\\bun3.png");
+	rc->SetTexture("\\Sprites\\Ingredients\\tomato3.png");
 	rc->SetDimensions(16, 16);
 	rc->SetOffsetX(48);
 
@@ -74,8 +74,8 @@ void dae::Bun::Initialize(dae::Scene& scene, Vec2 loc)
 	ingredient->SetCollisions(cols);
 	ingredient->SetSprites(sprites);
 
-	go->GetTransform()->SetPosition(loc.x, loc.y+44, 0);
-	go->SetTag("Bun");
-	scene.Add(go,1);
+	go->GetTransform()->SetPosition(loc.x, loc.y + 44, 0);
+	go->SetTag("Tomato");
+	scene.Add(go, 1);
 
 }

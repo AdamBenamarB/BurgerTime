@@ -74,13 +74,13 @@ void dae::PeterPepperComponent::HandleMovement(float deltaTime)
 	case State::up:
 		if (!m_OnLadder)
 			return;
-		pos.y -= m_Speed * deltaTime;
+		pos.y -= m_LadderSpeed * deltaTime;
 		m_GameObject->GetTransform()->SetPosition(ladderX, pos.y, pos.z);
 		break;
 	case State::down:
 		if (!m_OnLadder)
 			return;
-		pos.y += m_Speed * deltaTime;
+		pos.y += m_LadderSpeed * deltaTime;
 		m_GameObject->GetTransform()->SetPosition(ladderX, pos.y, pos.z);
 		break;
 	}
@@ -127,11 +127,11 @@ void dae::PeterPepperComponent::HandleCollision(float deltaTime)
 			m_GameObject->GetTransform()->SetPosition(pos.x, pos.y, pos.z);
 			break;
 		case State::up:
-			pos.y += m_Speed * deltaTime;
+			pos.y += m_LadderSpeed * deltaTime;
 			m_GameObject->GetTransform()->SetPosition(pos.x, pos.y, pos.z);
 			break;
 		case State::down:
-			pos.y -= m_Speed * deltaTime;
+			pos.y -= m_LadderSpeed * deltaTime;
 			m_GameObject->GetTransform()->SetPosition(pos.x, pos.y, pos.z);
 			break;
 		}

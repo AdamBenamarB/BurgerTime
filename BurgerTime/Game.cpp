@@ -1,6 +1,8 @@
 #include "Game.h"
 
+#include "BottomBun.h"
 #include "Bun.h"
+#include "Cheese.h"
 #include "CollisionComponent.h"
 #include "FPS.h"
 #include "Minigin.h"
@@ -20,6 +22,9 @@
 #include "Wall.h"
 #include "GameObject.h"
 #include "IngredientComponent.h"
+#include "Lettuce.h"
+#include "Patty.h"
+#include "Tomato.h"
 
 void Game::LoadGame() const
 {
@@ -30,13 +35,26 @@ void Game::LoadGame() const
 	dae::Platform plat2{ scene,Vec2{64,0} };
 	dae::Platform plat3{ scene,Vec2{0,128} };
 	dae::Platform plat4{ scene,Vec2{64,128} };
+	dae::Platform plat41{ scene,Vec2{128,64} };
 	dae::Platform plat5{ scene,Vec2{128,196} };
 	dae::Platform plat6{ scene,Vec2{64,64} };
 	dae::Ladder ladder2{ scene,Vec2{64,64} };
 	dae::Ladder ladder{ scene,Vec2{64,0} };
+	dae::Ladder ladder3{ scene,Vec2{64,128} };
 	//dae::Wall wall{ scene,Vec2{64,128} };
+	dae::Platform plat7{ scene,Vec2{128,0} };
+	dae::Platform plat8{ scene,Vec2{128,64} };
+	dae::Platform plat9{ scene,Vec2{128,128} };
+	dae::Platform plat10{ scene,Vec2{128,196} };
+	dae::Platform plat11{ scene,Vec2{128,256} };
+	dae::Platform plat12{ scene,Vec2{128,320} };
+
 	dae::Bun bun{ scene, Vec2{128,0} };
-	dae::Bun bun2{ scene,Vec2{128,128} };
+	dae::Cheese cheese{ scene, Vec2{128,64} };
+	dae::Patty patty{ scene,Vec2{128,128} };
+	dae::Tomato tomato{ scene, Vec2{128,192} };
+	dae::Lettuce lettuce{ scene, Vec2{128,256} };
+	dae::BottomBun botbun{ scene, Vec2{128,320} };
 
 	/*auto go = std::make_shared<dae::GameObject>();
 	go->AddComponent<dae::IngredientComponent>();*/

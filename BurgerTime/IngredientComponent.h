@@ -14,14 +14,15 @@ namespace dae {
         enum class State
         {
             idle,
-            falling
+            falling,
+            plated
         };
         IngredientComponent(GameObject* owner);
         void Update(float deltaTime) override;
         void SetCollisions(std::vector<CollisionComponent*>& cols);
         void SetSprites(std::vector<RenderComponent*>& sprites);
 
-        void SetState(State state) { m_State = state; }
+        void SetState(State state);
     private:
         void HandleMovement(float deltaTime);
         void HandleCollision(float deltaTime);
@@ -31,8 +32,9 @@ namespace dae {
         std::vector<RenderComponent*> m_Sprites{};
         bool m_DropStates[4]{false,false,false,false};//true is dropped
 
-        float m_FallSpeed{ 50.f };
+        float m_FallSpeed{ 200.f };
 
-        GameObject* m_CollidedIngredient{ nullptr };
+        GameObject* m_CollidedIngredient{ nullptr },
+            *m_Platform{ nullptr };
     };
 }

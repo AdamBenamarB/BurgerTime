@@ -18,15 +18,22 @@ void dae::IngredientComponent::Update(float deltaTime)
 	HandleCollision(deltaTime);
 }
 
-void dae::IngredientComponent::HandleMovement(float)// deltaTime)
+void dae::IngredientComponent::HandleMovement(float deltaTime)
 {
-	
+	if (m_State == State::falling)
+	{
+		auto pos = m_GameObject->GetTransform()->GetPosition();
+		pos.y += m_FallSpeed * deltaTime;
+		m_GameObject->GetTransform()->SetPosition(pos.x, pos.y, pos.z);
+	}
+
 }
 
-void dae::IngredientComponent::HandleCollision(float deltaTime)
+void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 {
 	if (m_State == State::idle)
 	{
+		bool onPlatform = false;
 		for (auto& obj : SceneManager::GetInstance().GetActiveScene().GetObjects())
 		{
 
@@ -38,37 +45,45 @@ void dae::IngredientComponent::HandleCollision(float deltaTime)
 						m_DropStates[i] = true;
 						m_Sprites[i]->SetOffsetY(5);
 					}
+					else if(i==1)
+					{
+						if (obj->GetTag().compare("PLATFORM") == 0)
+						{
+							onPlatform = true;
+						}
+					}
 
 			}
 		}
+		if (!onPlatform)
+			m_State = State::falling;
 
 		for (int i{}; i < 4; ++i)
 		{
 			if (m_DropStates[i] == false)
 				return;
 		}
-		m_State = State::falling;
+		SetState(State::falling);
+		m_CollidedIngredient = nullptr;
 		for(int i{};i<4;++i)
 		{
 			m_DropStates[i] = false;
 			m_Sprites[i]->SetOffsetY(0);
 		}
 	}
-	if (m_State == State::falling)
+	else if (m_State == State::falling)
 	{
-		auto pos = m_GameObject->GetTransform()->GetPosition();
-		pos.y += m_FallSpeed * deltaTime;
-		m_GameObject->GetTransform()->SetPosition(pos.x,pos.y,pos.z);
 
 		for (auto& obj : SceneManager::GetInstance().GetActiveScene().GetObjects())
 		{
-
 			if (m_Collisions[1]->IsOverlapping(obj.get()))
 			{
+				if(obj.get()!=m_Platform)
 				if (obj->GetTag().compare("PLATFORM") == 0)
 				{
 					if (!m_Collisions[1]->IsUnder(obj.get()))
 					{
+						m_Platform = nullptr;
 						m_State = State::idle;
 						m_CollidedIngredient = nullptr;
 					}
@@ -79,8 +94,6 @@ void dae::IngredientComponent::HandleCollision(float deltaTime)
 				{
 					m_CollidedIngredient = obj.get();
 					comp->SetState(State::falling);
-					auto posi = obj->GetTransform()->GetPosition();
-					m_GameObject->GetTransform()->SetPosition(posi.x,posi.y,posi.z);
 					m_State = State::idle;
 				}
 			}
@@ -97,4 +110,25 @@ void dae::IngredientComponent::SetCollisions(std::vector<CollisionComponent*>& c
 void dae::IngredientComponent::SetSprites(std::vector<RenderComponent*>& sprites)
 {
 	m_Sprites = sprites;
+}
+
+void dae::IngredientComponent::SetState(State state)
+{
+	if (m_State != State::plated)
+	{
+		m_State = state;
+		if (m_State == State::falling)
+		{
+			for (auto& obj : SceneManager::GetInstance().GetActiveScene().GetObjects())
+			{
+				if (m_Collisions[1]->IsOverlapping(obj.get()))
+				{
+					if (obj->GetTag().compare("PLATFORM") == 0)
+					{
+						m_Platform = obj.get();
+					}
+				}
+			}
+		}
+	}
 }

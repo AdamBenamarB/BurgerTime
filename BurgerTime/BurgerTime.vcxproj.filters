@@ -54,6 +54,21 @@
     <ClCompile Include="PlatformComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="Patty.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="Lettuce.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="Tomato.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="Cheese.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="BottomBun.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -85,6 +100,21 @@
     </ClInclude>
     <ClInclude Include="PlatformComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Patty.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="Lettuce.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="Tomato.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="Cheese.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="BottomBun.h">
+      <Filter>Prefabs</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

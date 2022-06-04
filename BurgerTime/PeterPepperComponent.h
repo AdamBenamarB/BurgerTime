@@ -28,8 +28,8 @@ namespace dae {
         void HandleCollision(float deltaTime);
         void HandleAnim();
         State m_State = State::idle;
-        float m_Speed = 50.f;
-        float m_LadderSpeed = 50.f;
+        float m_Speed = 80.f;
+        float m_LadderSpeed = 100.f;
 
         //ANIM
         AnimatedRenderComponent* m_Anim{};

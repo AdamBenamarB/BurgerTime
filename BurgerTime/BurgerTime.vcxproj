@@ -167,25 +167,35 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BottomBun.cpp" />
     <ClCompile Include="Bun.cpp" />
+    <ClCompile Include="Cheese.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="IngredientComponent.cpp" />
     <ClCompile Include="Ladder.cpp" />
+    <ClCompile Include="Lettuce.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Patty.cpp" />
     <ClCompile Include="PeterPepper.cpp" />
     <ClCompile Include="PeterPepperComponent.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="PlatformComponent.cpp" />
+    <ClCompile Include="Tomato.cpp" />
     <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BottomBun.h" />
     <ClInclude Include="Bun.h" />
+    <ClInclude Include="Cheese.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="IngredientComponent.h" />
     <ClInclude Include="Ladder.h" />
+    <ClInclude Include="Lettuce.h" />
+    <ClInclude Include="Patty.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="PlatformComponent.h" />
+    <ClInclude Include="Tomato.h" />
     <ClInclude Include="Wall.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="PeterPepper.h" />
