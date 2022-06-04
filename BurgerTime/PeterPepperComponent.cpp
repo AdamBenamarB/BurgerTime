@@ -8,10 +8,12 @@
 #include "PlatformComponent.h"
 #include "Scene.h"
 #include "SceneManager.h"
+#include "ServiceLocator.h"
 
 dae::PeterPepperComponent::PeterPepperComponent(GameObject* owner)
 	:Component(owner)
 {
+	m_Walk = ServiceLocator::GetSoundSystem().AddSound("C:\\School\\Prog4\\BurgerTime\\Data\\Sounds\\theme.wav");
 }
 
 void dae::PeterPepperComponent::Update(float deltaTime)
@@ -184,6 +186,7 @@ void dae::PeterPepperComponent::SetState(State state)
 	switch (m_State)
 	{
 	case State::idle:
+		ServiceLocator::GetSoundSystem().Play(m_Walk, 100);
 		break;
 	case State::left:
 		break;
