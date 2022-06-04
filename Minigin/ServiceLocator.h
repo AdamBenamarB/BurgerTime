@@ -7,8 +7,8 @@ namespace dae {
 		static SoundSystem* m_SSInstance;
 		static NullSoundSystem m_DefaultSS;
 	public:
-		ServiceLocator() = default;
-		~ServiceLocator();
+		ServiceLocator() = delete;
+		~ServiceLocator() = delete;
 		ServiceLocator(const ServiceLocator& other) = delete;
 		ServiceLocator(ServiceLocator&& other) = delete;
 		ServiceLocator& operator=(const ServiceLocator& other) = delete;

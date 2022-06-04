@@ -15,12 +15,15 @@ namespace dae {
 		~SoundSystem();
 
 	private:
+		void Initialize();
 		void CheckQueue();
 
 		std::vector<std::shared_ptr<AudioClip>> m_Clips{};
 		std::vector<std::pair<int,int>> m_ToBePlayed{};
 		std::thread m_Thread{};
 		std::mutex m_Mutex{};
+
+		bool m_Active=true;
 	};
 
 	class NullSoundSystem : public SoundSystem

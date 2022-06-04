@@ -43,8 +43,5 @@ namespace dae {
         bool m_OnPlatform{ false },
             m_OnLadder{ false },
             m_Colliding{ false };
-
-        //SOUND
-        int m_Walk{};
     };
 }

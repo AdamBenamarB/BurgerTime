@@ -21,7 +21,7 @@ public:
 	{
 
 		Mix_VolumeChunk(m_Chunk, volume);
-		Mix_PlayChannel(-1, m_Chunk,0);
+		Mix_PlayChannel(-1, m_Chunk, 10);
 	}
 private:
 	Mix_Chunk* m_Chunk{};

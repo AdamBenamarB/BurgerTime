@@ -28,7 +28,6 @@
 
 void Game::LoadGame() const
 {
-	dae::ServiceLocator::RegisterSoundSystem(new dae::SoundSystem());
 	auto& scene = dae::SceneManager::GetInstance().CreateScene("Demo");
 	dae::PeterPepper peter{ scene };
 	//dae::Wall wall{ scene,Vec2{128,0} };
