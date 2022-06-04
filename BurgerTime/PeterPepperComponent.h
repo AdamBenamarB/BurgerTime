@@ -1,9 +1,12 @@
 #pragma once
 #include "Component.h"
+#include "Structs.h"
 #include "Transform.h"
 
 namespace dae {
-    class PeterPepperComponent : public Component
+	class AnimatedRenderComponent;
+
+	class PeterPepperComponent : public Component
     {
     public:
         enum class State
@@ -17,11 +20,28 @@ namespace dae {
         PeterPepperComponent(GameObject* owner);
         void Update(float deltaTime) override;
 
-        void SetState(State state) { m_State = state; }
+        void SetState(State state);
+
+        void InitAnimation(AnimatedRenderComponent* comp);
     private:
         void HandleMovement(float deltaTime);
         void HandleCollision(float deltaTime);
+        void HandleAnim();
         State m_State = State::idle;
         float m_Speed = 50.f;
+        float m_LadderSpeed = 50.f;
+
+        //ANIM
+        AnimatedRenderComponent* m_Anim{};
+
+        int m_Idle{},
+            m_RunLeft{},
+            m_RunRight{},
+            m_Climb{},
+            m_ClimbDown{};
+
+        bool m_OnPlatform{ false },
+            m_OnLadder{ false },
+            m_Colliding{ false };
     };
 }

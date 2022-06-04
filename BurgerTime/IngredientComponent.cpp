@@ -37,7 +37,6 @@ void dae::IngredientComponent::HandleCollision(float deltaTime)
 					{
 						m_DropStates[i] = true;
 						m_Sprites[i]->SetOffsetY(5);
-						std::cout << "Overlap at: " << i << std::endl;
 					}
 
 			}
@@ -81,7 +80,6 @@ void dae::IngredientComponent::HandleCollision(float deltaTime)
 					m_CollidedIngredient = obj.get();
 					comp->SetState(State::falling);
 					auto posi = obj->GetTransform()->GetPosition();
-					//obj->GetTransform()->SetPosition(pos.x, posi.y + 16, posi.z);
 					m_GameObject->GetTransform()->SetPosition(posi.x,posi.y,posi.z);
 					m_State = State::idle;
 				}

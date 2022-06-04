@@ -17,5 +17,6 @@ namespace dae
 
 		float m_Height{ 62 },
 			m_Width{ 64 };
+
 	};
 }

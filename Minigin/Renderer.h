@@ -1,7 +1,7 @@
 #pragma once
 #include "Singleton.h"
 #include "Exercise.h"
-
+#include "Structs.h"
 namespace dae
 {
 	class Texture2D;
@@ -20,6 +20,7 @@ namespace dae
 
 		void RenderTexture(const Texture2D& texture, float x, float y) const;
 		void RenderTexture(const Texture2D& texture, float x, float y, float width, float height) const;
+		void RenderTexture(const Texture2D& texture, Rect dst, Rect src);
 
 		SDL_Renderer* GetSDLRenderer() const { return m_Renderer; }
 

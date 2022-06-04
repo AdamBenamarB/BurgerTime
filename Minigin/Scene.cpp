@@ -1,5 +1,7 @@
 #include "MiniginPCH.h"
 #include "Scene.h"
+
+#include "AnimatedRenderComponent.h"
 #include "GameObject.h"
 #include "RenderComponent.h"
 
@@ -69,7 +71,7 @@ void Scene::Render() const
 	
 	for (const auto& object : m_ObjectsFirst)
 	{
-		for (auto render : object->GetComponents<RenderComponent>())
+		for (auto render : object->GetComponents<AnimatedRenderComponent>())
 		{
 			render->Render();
 		}

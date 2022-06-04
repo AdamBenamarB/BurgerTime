@@ -1,5 +1,6 @@
 #include "PeterPepper.h"
 
+#include "AnimatedRenderComponent.h"
 #include "CollisionComponent.h"
 #include "RenderComponent.h"
 #include "GameObject.h"
@@ -16,10 +17,16 @@ dae::PeterPepper::PeterPepper(dae::Scene& scene)
 void dae::PeterPepper::Initialize(dae::Scene& scene)
 {
 	auto go = std::make_shared<dae::GameObject>();
-	go->AddComponent<PeterPepperComponent>();
-	auto rc = go->AddComponent<dae::RenderComponent>();
+	auto ppcomp = go->AddComponent<PeterPepperComponent>();
+	/*auto rc = go->AddComponent<dae::RenderComponent>();
 	rc->SetTexture("\\Sprites\\PeterPepper\\peter.png");
+	rc->SetDimensions(m_Height, m_Width);*/
+
+	auto rc = go->AddComponent<dae::AnimatedRenderComponent>();
+	rc->SetTexture("\\Sprites\\PeterPepper\\sprites.png");
 	rc->SetDimensions(m_Height, m_Width);
+	rc->SetSpriteDimensions(16, 16);
+	ppcomp->InitAnimation(rc);
 
 	auto col = go->AddComponent<CollisionComponent>();
 	col->SetSize(64,64);
