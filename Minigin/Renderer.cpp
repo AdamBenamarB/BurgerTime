@@ -37,7 +37,7 @@ void dae::Renderer::Init(SDL_Window * window)
 
 }
 
-void dae::Renderer::Render() //const<-YES I KNOW THIS IS BAD
+void dae::Renderer::Render()
 {
 	const auto& color = GetBackgroundColor();
 	SDL_SetRenderDrawColor(m_Renderer, color.r, color.g, color.b, color.a);

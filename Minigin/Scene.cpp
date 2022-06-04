@@ -71,7 +71,7 @@ void Scene::Render() const
 	
 	for (const auto& object : m_ObjectsFirst)
 	{
-		for (auto render : object->GetComponents<AnimatedRenderComponent>())
+		for (auto render : object->GetComponents<RenderComponent>())
 		{
 			render->Render();
 		}

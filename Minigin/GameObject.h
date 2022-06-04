@@ -66,7 +66,7 @@ T* dae::GameObject::GetComponent() const
 {
 	for(std::shared_ptr<Component> comp : m_Components)
 	{
-		if (typeid(T) == typeid(*comp))
+		if(dynamic_cast<T*>(comp.get()))
 		{
 			return (T*)comp.get();
 		}
@@ -81,7 +81,7 @@ std::vector<T*> dae::GameObject::GetComponents() const
 	std::vector<T*> comps{};
 	for (std::shared_ptr<Component> comp : m_Components)
 	{
-		if (typeid(T) == typeid(*comp))
+		if (dynamic_cast<T*>(comp.get()))
 		{
 			comps.push_back((T*)comp.get());
 		}

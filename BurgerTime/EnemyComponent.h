@@ -7,7 +7,8 @@
 #include "Transform.h"
 
 namespace dae {
-    class CollisionComponent;
+	class AnimatedRenderComponent;
+	class CollisionComponent;
 
     class EnemyComponent : public Component
     {
@@ -19,7 +20,8 @@ namespace dae {
             up,
             down,
             stunned,
-            falling
+            falling,
+            dead
         };
         EnemyComponent(GameObject* owner);
         void Update(float deltaTime) override;
@@ -27,14 +29,17 @@ namespace dae {
         void SetPeter(GameObject* peterObj) { m_Peter = peterObj; }
 
         void SetState(State state);// { m_State = state; }
+
+        void InitAnimation(AnimatedRenderComponent* animComp,std::string textureLoc);
     private:
         void HandleMovement(float deltaTime);
         void HandleCollision(float deltaTime);
+        void HandleAnim() const;
         State m_State = State::left;
 
-        float m_Speed{ 80.f },
-            m_ClimbSpeed{ 60.f },
-    		m_FallSpeed{200.f};
+        float m_Speed{ 60.f },
+            m_ClimbSpeed{ 40.f },
+    		m_FallSpeed{150.f};
 
         bool m_OnPlatform{ false },
             m_OnLadder{ false },
@@ -44,6 +49,15 @@ namespace dae {
             * m_CurrentPlatform{};
 
         Vec2 m_Direction{};
+
+        AnimatedRenderComponent* m_Anim{};
+
+        //Anim
+        int m_RunLeft{},
+            m_RunRight{},
+            m_Climb{},
+            m_ClimbDown{},
+            m_Stunned{};
         
     };
 }

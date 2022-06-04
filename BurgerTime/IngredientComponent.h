@@ -32,7 +32,7 @@ namespace dae {
         std::vector<RenderComponent*> m_Sprites{};
         bool m_DropStates[4]{false,false,false,false};//true is dropped
 
-        float m_FallSpeed{ 200.f };
+        float m_FallSpeed{ 150.f };
 
         GameObject* m_CollidedIngredient{ nullptr },
             *m_Platform{ nullptr };

@@ -1,6 +1,9 @@
 #pragma once
 #include "Singleton.h"
 #include <string>
+#include <memory>
+#include <vector>
+
 namespace dae
 {
 	class Scene;

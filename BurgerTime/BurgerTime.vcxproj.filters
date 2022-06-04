@@ -75,6 +75,9 @@
     <ClCompile Include="EnemyComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="MrEgg.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -127,6 +130,9 @@
     </ClInclude>
     <ClInclude Include="EnemyComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="MrEgg.h">
+      <Filter>Prefabs</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

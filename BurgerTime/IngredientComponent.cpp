@@ -77,7 +77,6 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 		{
 			enemy->GetComponent<EnemyComponent>()->SetState(EnemyComponent::State::falling);
 		}
-		m_Enemies.clear();
 	}
 	else if (m_State == State::falling)
 	{
@@ -86,6 +85,7 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 		{
 			if (m_Collisions[1]->IsOverlapping(obj.get()))
 			{
+				if(m_Enemies.size()==0)
 				if(obj.get()!=m_Platform)
 				if (obj->GetTag().compare("PLATFORM") == 0)
 				{
@@ -101,7 +101,13 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 				if (auto comp = obj->GetComponent<IngredientComponent>())
 				{
 					if (comp->m_State == State::plated)
+					{
 						m_State = State::plated;
+						for(auto& enemy:m_Enemies)
+						{
+							enemy->GetComponent<EnemyComponent>()->SetState(EnemyComponent::State::dead);
+						}
+					}
 					else {
 						m_CollidedIngredient = obj.get();
 						comp->SetState(State::falling);

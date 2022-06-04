@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+#include "AnimatedRenderComponent.h"
 #include "CollisionComponent.h"
 #include "GameObject.h"
 #include "PlatformComponent.h"
@@ -17,6 +18,7 @@ void dae::EnemyComponent::Update(float deltaTime)
 {
 	HandleMovement(deltaTime);
 	HandleCollision(deltaTime);
+	HandleAnim();
 }
 
 void dae::EnemyComponent::HandleMovement(float deltaTime)
@@ -129,7 +131,7 @@ void dae::EnemyComponent::HandleMovement(float deltaTime)
 void dae::EnemyComponent::HandleCollision(float deltaTime)
 {
 	auto pos = m_GameObject->GetTransform()->GetPosition();
-	if (m_State != State::falling)
+	if (m_State != State::falling || m_State != State::dead)
 	{
 		m_Colliding = false;
 		bool underLadder = false;
@@ -174,7 +176,7 @@ void dae::EnemyComponent::HandleCollision(float deltaTime)
 			m_GameObject->GetTransform()->SetPosition(pos.x, pos.y, pos.z);
 		}
 	}
-	else
+	/*else
 	{
 		for (auto& obj : SceneManager::GetInstance().GetActiveScene().GetObjects())
 		{
@@ -195,7 +197,7 @@ void dae::EnemyComponent::HandleCollision(float deltaTime)
 				
 			}
 		}
-	}
+	}*/
 }
 
 void dae::EnemyComponent::SetState(State state)
@@ -204,6 +206,43 @@ void dae::EnemyComponent::SetState(State state)
 	if(m_State== State::falling)
 	{
 		auto& pos = m_GameObject->GetTransform()->GetPosition();
-		m_GameObject->GetTransform()->SetPosition(pos.x,pos.y+1,pos.z);
+		m_GameObject->GetTransform()->SetPosition(pos.x,pos.y+3,pos.z);
+	}
+}
+
+void dae::EnemyComponent::InitAnimation(AnimatedRenderComponent* animComp,std::string textureLoc)
+{
+	if (animComp == nullptr)
+		return;
+	animComp->SetTexture(textureLoc);
+
+	m_Anim = animComp;
+	
+	m_RunLeft = m_Anim->AddClip(2, true);
+	m_RunRight = m_Anim->AddClip(2, true);
+	m_ClimbDown = m_Anim->AddClip(2, true);
+	m_Climb = m_Anim->AddClip(2, true);
+	m_Stunned = m_Anim->AddClip(2, false);
+}
+
+void dae::EnemyComponent::HandleAnim() const
+{
+	switch(m_State)
+	{
+	case State::left:
+		m_Anim->SetClip(m_RunLeft);
+		return;
+	case State::right:
+		m_Anim->SetClip(m_RunRight);
+		return;
+	case State::down:
+		m_Anim->SetClip(m_ClimbDown);
+		return;
+	case State::up:
+		m_Anim->SetClip(m_Climb);
+		return;
+	case State::stunned:
+		m_Anim->SetClip(m_Stunned);
+		return;
 	}
 }
