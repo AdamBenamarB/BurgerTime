@@ -97,7 +97,7 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 					}
 				}
 
-				if(obj.get()!=m_CollidedIngredient)
+				//if(obj.get()!=m_CollidedIngredient)
 				if (auto comp = obj->GetComponent<IngredientComponent>())
 				{
 					if (comp->m_State == State::plated)
