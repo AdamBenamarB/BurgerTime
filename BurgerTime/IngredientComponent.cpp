@@ -92,9 +92,19 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 				if(obj.get()!=m_CollidedIngredient)
 				if (auto comp = obj->GetComponent<IngredientComponent>())
 				{
-					m_CollidedIngredient = obj.get();
-					comp->SetState(State::falling);
-					m_State = State::idle;
+					if (comp->m_State == State::plated)
+						m_State = State::plated;
+					else {
+						m_CollidedIngredient = obj.get();
+						comp->SetState(State::falling);
+						m_State = State::idle;
+					}
+				}
+
+				if (obj->GetTag().compare("PLATE") == 0)
+				{
+						m_State = State::plated;
+					
 				}
 			}
 		}

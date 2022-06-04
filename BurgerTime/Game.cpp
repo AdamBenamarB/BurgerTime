@@ -24,6 +24,7 @@
 #include "IngredientComponent.h"
 #include "Lettuce.h"
 #include "Patty.h"
+#include "Plate.h"
 #include "Tomato.h"
 
 void Game::LoadGame() const
@@ -41,6 +42,9 @@ void Game::LoadGame() const
 	dae::Ladder ladder2{ scene,Vec2{64,64} };
 	dae::Ladder ladder{ scene,Vec2{64,0} };
 	dae::Ladder ladder3{ scene,Vec2{64,128} };
+	dae::Ladder ladder4{ scene,Vec2{64,192} };
+	dae::Ladder ladder5{ scene,Vec2{64,256} };
+	dae::Ladder ladder6{ scene,Vec2{64,320} };
 	//dae::Wall wall{ scene,Vec2{64,128} };
 	dae::Platform plat7{ scene,Vec2{128,0} };
 	dae::Platform plat8{ scene,Vec2{128,64} };
@@ -55,7 +59,7 @@ void Game::LoadGame() const
 	dae::Tomato tomato{ scene, Vec2{128,192} };
 	dae::Lettuce lettuce{ scene, Vec2{128,256} };
 	dae::BottomBun botbun{ scene, Vec2{128,320} };
-
+	dae::Plate plate{ scene, Vec2{128,384} };
 	/*auto go = std::make_shared<dae::GameObject>();
 	go->AddComponent<dae::IngredientComponent>();*/
 	//dae::ServiceLocator::RegisterSoundSystem(new dae::SoundSystem());

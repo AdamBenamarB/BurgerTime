@@ -179,6 +179,7 @@
     <ClCompile Include="Patty.cpp" />
     <ClCompile Include="PeterPepper.cpp" />
     <ClCompile Include="PeterPepperComponent.cpp" />
+    <ClCompile Include="Plate.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="PlatformComponent.cpp" />
     <ClCompile Include="Tomato.cpp" />
@@ -193,6 +194,7 @@
     <ClInclude Include="Ladder.h" />
     <ClInclude Include="Lettuce.h" />
     <ClInclude Include="Patty.h" />
+    <ClInclude Include="Plate.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="PlatformComponent.h" />
     <ClInclude Include="Tomato.h" />

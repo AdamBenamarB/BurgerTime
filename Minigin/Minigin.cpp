@@ -64,7 +64,6 @@ void dae::Minigin::Initialize()
 
 	Renderer::GetInstance().Init(m_Window);
 	
-	//dae::ServiceLocator::RegisterSoundSystem(m_SS);
 }
 
 /**
@@ -79,7 +78,6 @@ void dae::Minigin::Cleanup()
 	Renderer::GetInstance().Destroy();
 	SDL_DestroyWindow(m_Window);
 	m_Window = nullptr;
-	//dae::ServiceLocator::RegisterSoundSystem(nullptr);
 	Mix_Quit();
 	SDL_Quit();
 }
