@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "CollisionComponent.h"
+#include "EnemyComponent.h"
 #include "GameObject.h"
 #include "Scene.h"
 #include "SceneManager.h"
@@ -33,6 +34,7 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 {
 	if (m_State == State::idle)
 	{
+		m_Enemies.clear();
 		bool onPlatform = false;
 		for (auto& obj : SceneManager::GetInstance().GetActiveScene().GetObjects())
 		{
@@ -45,6 +47,8 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 						m_DropStates[i] = true;
 						m_Sprites[i]->SetOffsetY(5);
 					}
+					else if (obj->GetComponent<EnemyComponent>())
+						m_Enemies.push_back(obj.get());
 					else if(i==1)
 					{
 						if (obj->GetTag().compare("PLATFORM") == 0)
@@ -52,7 +56,6 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 							onPlatform = true;
 						}
 					}
-
 			}
 		}
 		if (!onPlatform)
@@ -70,6 +73,11 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 			m_DropStates[i] = false;
 			m_Sprites[i]->SetOffsetY(0);
 		}
+		for(auto& enemy:m_Enemies)
+		{
+			enemy->GetComponent<EnemyComponent>()->SetState(EnemyComponent::State::falling);
+		}
+		m_Enemies.clear();
 	}
 	else if (m_State == State::falling)
 	{
@@ -97,7 +105,6 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 					else {
 						m_CollidedIngredient = obj.get();
 						comp->SetState(State::falling);
-						m_State = State::idle;
 					}
 				}
 
@@ -138,6 +145,11 @@ void dae::IngredientComponent::SetState(State state)
 						m_Platform = obj.get();
 					}
 				}
+			}
+			for (int i{}; i < 4; ++i)
+			{
+				m_DropStates[i] = false;
+				m_Sprites[i]->SetOffsetY(0);
 			}
 		}
 	}

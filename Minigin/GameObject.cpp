@@ -46,8 +46,19 @@ void dae::GameObject::RemoveChild(int index)
 	m_Children.erase(m_Children.begin() + index);
 }
 
+void dae::GameObject::RemoveChildren()
+{
+	for (auto& child : m_Children)
+		child->SetParent(nullptr);
+
+	m_Children.clear();
+}
+
+
 void dae::GameObject::AddChild(GameObject* go)
 {
+	go->SetParent(this);
 	m_Children.push_back(go);
 }
+
 

@@ -36,5 +36,7 @@ namespace dae {
 
         GameObject* m_CollidedIngredient{ nullptr },
             *m_Platform{ nullptr };
+
+        std::vector<GameObject*> m_Enemies{};
     };
 }

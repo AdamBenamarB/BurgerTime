@@ -4,6 +4,7 @@
 #include "Bun.h"
 #include "Cheese.h"
 #include "CollisionComponent.h"
+#include "EnemyComponent.h"
 #include "FPS.h"
 #include "Minigin.h"
 #include "GameObject.h"
@@ -31,6 +32,18 @@ void Game::LoadGame() const
 {
 	auto& scene = dae::SceneManager::GetInstance().CreateScene("Demo");
 	dae::PeterPepper peter{ scene };
+
+	auto go = std::make_shared<dae::GameObject>();
+	auto rc = go->AddComponent<dae::RenderComponent>();
+	rc->SetTexture("\\Sprites\\PeterPepper\\peter.png");
+	rc->SetDimensions(64, 64);
+	auto enemy = go->AddComponent<dae::EnemyComponent>();
+	enemy->SetPeter(peter.GetGameObject());
+	auto col = go->AddComponent<dae::CollisionComponent>();
+	col->SetSize(64, 64);
+
+	go->GetTransform()->SetPosition(64, 0, 0);
+	scene.Add(go,1);
 	//dae::Wall wall{ scene,Vec2{128,0} };
 	dae::Platform plat{ scene,Vec2{0,0} };
 	dae::Platform plat2{ scene,Vec2{64,0} };

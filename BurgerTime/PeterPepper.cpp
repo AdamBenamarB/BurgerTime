@@ -17,6 +17,7 @@ dae::PeterPepper::PeterPepper(dae::Scene& scene)
 void dae::PeterPepper::Initialize(dae::Scene& scene)
 {
 	auto go = std::make_shared<dae::GameObject>();
+	m_Peter = go.get();
 	auto ppcomp = go->AddComponent<PeterPepperComponent>();
 	/*auto rc = go->AddComponent<dae::RenderComponent>();
 	rc->SetTexture("\\Sprites\\PeterPepper\\peter.png");
@@ -67,3 +68,9 @@ void dae::PeterPepper::Initialize(dae::Scene& scene)
 	dae::InputManager::GetInstance().AddCommand(controllerkey, std::move(command23));
 
 }
+
+dae::GameObject* dae::PeterPepper::GetGameObject()
+{
+	return m_Peter;
+}
+

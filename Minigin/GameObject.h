@@ -33,6 +33,7 @@ namespace dae
 		size_t GetChildCount() const;
 		GameObject* GetChildAt(int index) const;
 		void RemoveChild(int index);
+		void RemoveChildren();
 		void AddChild(GameObject* go);
 
 		void SetTag(std::string tag) { m_Tag = tag; }
