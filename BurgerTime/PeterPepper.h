@@ -1,6 +1,8 @@
 #pragma once
 
 
+struct Vec2;
+
 namespace dae
 {
 	class Scene;
@@ -8,7 +10,7 @@ namespace dae
 	class PeterPepper
 	{
 	public:
-		PeterPepper(dae::Scene& scene);
+		PeterPepper(dae::Scene& scene,Vec2 loc);
 		~PeterPepper() = default;
 		PeterPepper(const PeterPepper& other) = delete;
 		PeterPepper(PeterPepper&& other) noexcept = delete;
@@ -17,10 +19,10 @@ namespace dae
 
 		GameObject* GetGameObject();
 	private:
-		void Initialize(dae::Scene& scene);
+		void Initialize(dae::Scene& scene,Vec2 loc);
 
-		float m_Height{ 62 },
-			m_Width{ 64 };
+		float m_Height{ 48 },
+			m_Width{ 48 };
 		GameObject* m_Peter{};
 	};
 }

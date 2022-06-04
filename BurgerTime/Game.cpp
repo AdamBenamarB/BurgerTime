@@ -31,18 +31,18 @@
 void Game::LoadGame() const
 {
 	auto& scene = dae::SceneManager::GetInstance().CreateScene("Demo");
-	dae::PeterPepper peter{ scene };
+	dae::PeterPepper peter{ scene,{0,0} };
 
 	auto go = std::make_shared<dae::GameObject>();
 	auto rc = go->AddComponent<dae::RenderComponent>();
 	rc->SetTexture("\\Sprites\\PeterPepper\\peter.png");
-	rc->SetDimensions(64, 64);
+	rc->SetDimensions(48, 48);
 	auto enemy = go->AddComponent<dae::EnemyComponent>();
 	enemy->SetPeter(peter.GetGameObject());
 	auto col = go->AddComponent<dae::CollisionComponent>();
-	col->SetSize(64, 64);
+	col->SetSize(48, 48);
 
-	go->GetTransform()->SetPosition(64, 0, 0);
+	go->GetTransform()->SetPosition(64, 32, 0);
 	scene.Add(go,1);
 	//dae::Wall wall{ scene,Vec2{128,0} };
 	dae::Platform plat{ scene,Vec2{0,0} };

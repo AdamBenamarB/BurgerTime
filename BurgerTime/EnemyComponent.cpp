@@ -52,12 +52,12 @@ void dae::EnemyComponent::HandleMovement(float deltaTime)
 					if (!m_GameObject->GetComponent<CollisionComponent>()->IsUnder(obj.get()))
 					{
 						m_OnPlatform = true;
-						platformY = obj->GetComponent<PlatformComponent>()->GetFloorPos().y;
+						platformY = obj->GetComponent<PlatformComponent>()->GetFloorPos().y+76;
 					}
 				}
 				else if (obj->GetTag().compare("LADDER") == 0)
 				{
-					ladderX = obj->GetTransform()->GetPosition().x;
+					ladderX = obj->GetTransform()->GetPosition().x+8;
 
 					if (abs(ladderX - m_GameObject->GetTransform()->GetPosition().x) < 10.f)
 					{
@@ -90,27 +90,27 @@ void dae::EnemyComponent::HandleMovement(float deltaTime)
 				if (ladderDir > 0)
 				{
 					pos.x += m_Speed * deltaTime;
-					pos.y = platformY + 60;
+					pos.y = platformY;
 					m_State = State::right;
 				}
 				if (ladderDir < 0)
 				{
 					pos.x -= m_Speed * deltaTime;
-					pos.y = platformY + 60;
+					pos.y = platformY;
 					m_State = State::left;
 				}
 			}
 			else if (m_Direction.x > 0.f)
 			{
 				pos.x += m_Speed * deltaTime;
-				pos.y = platformY + 60;
+				pos.y = platformY;
 				m_State = State::right;
 
 			}
 			else if (m_Direction.x < 0.f)
 			{
 				pos.x -= m_Speed * deltaTime;
-				pos.y = platformY + 60;
+				pos.y = platformY;
 				m_State = State::left;
 
 			}
@@ -185,7 +185,7 @@ void dae::EnemyComponent::HandleCollision(float deltaTime)
 					if (!m_GameObject->GetComponent<CollisionComponent>()->IsUnder(obj.get()))
 					{
 						auto floorpos = obj->GetComponent<PlatformComponent>()->GetFloorPos();
-						pos.y = floorpos.y + 60;
+						pos.y = floorpos.y + 76;
 						m_GameObject->GetTransform()->SetPosition(pos.x, pos.y, pos.z);
 						m_State = State::left;
 						return;
