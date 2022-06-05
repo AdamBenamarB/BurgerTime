@@ -5,6 +5,7 @@
 #include "AnimatedRenderComponent.h"
 #include "CollisionComponent.h"
 #include "GameObject.h"
+#include "PeterPepperComponent.h"
 #include "PlatformComponent.h"
 #include "Scene.h"
 #include "SceneManager.h"
@@ -40,7 +41,11 @@ void dae::EnemyComponent::HandleMovement(float deltaTime)
 
 		for (auto& obj : SceneManager::GetInstance().GetActiveScene().GetObjects())
 		{
+
 			if (m_GameObject->GetComponent<CollisionComponent>()->IsOverlapping(obj.get()))
+			{
+				if (obj.get() == m_Peter)
+					m_Peter->GetComponent<PeterPepperComponent>()->Hit();
 				if (obj->GetTag().compare("PLATFORM") == 0)
 				{
 					if (!m_GameObject->GetComponent<CollisionComponent>()->IsUnder(obj.get()))
@@ -62,9 +67,10 @@ void dae::EnemyComponent::HandleMovement(float deltaTime)
 							m_OnLadder = true;
 						}
 					}
-					
+
 
 				}
+			}
 		}
 		if (m_OnLadder && !m_OnPlatform)
 		{
@@ -295,5 +301,6 @@ void dae::EnemyComponent::SetPeter(GameObject* peterObj)
 
 void dae::EnemyComponent::Kill()
 {
+	m_Peter->GetComponent<PeterPepperComponent>()->AddPoints(m_GameObject);
 	SceneManager::GetInstance().GetActiveScene().Remove(m_GameObject);
 }

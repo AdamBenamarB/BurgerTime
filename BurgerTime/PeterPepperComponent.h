@@ -23,6 +23,11 @@ namespace dae {
         void SetState(State state);
 
         void InitAnimation(AnimatedRenderComponent* comp);
+
+        void Hit();
+
+        void AddPoints(GameObject* go);
+        void AddPoints(int amt);
     private:
         void HandleMovement(float deltaTime);
         void HandleCollision(float deltaTime);
@@ -41,8 +46,10 @@ namespace dae {
             m_ClimbDown{};
 
         bool m_OnPlatform{ false },
-            m_OnLadder{ false };
+            m_OnLadder{ false },
+            m_Hit{ false };
 
-        float
+        float m_ElapsedInv{}
+        , m_m_InvTime{0.5f};
     };
 }

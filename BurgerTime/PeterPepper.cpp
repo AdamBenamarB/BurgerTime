@@ -32,8 +32,8 @@ void dae::PeterPepper::Initialize(dae::Scene& scene, Vec2 loc)
 	ppcomp->InitAnimation(rc);
 
 	auto col = go->AddComponent<CollisionComponent>();
-	col->SetSize(32,32);
-	col->SetOffset(0, 0);
+	col->SetSize(28,32);
+	col->SetOffset(2, 0);
 	//col->SetOffset(16, 16);
 	go->SetTag("PETER");
 

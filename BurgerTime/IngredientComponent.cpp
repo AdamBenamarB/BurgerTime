@@ -5,6 +5,7 @@
 #include "CollisionComponent.h"
 #include "EnemyComponent.h"
 #include "GameObject.h"
+#include "PeterPepperComponent.h"
 #include "Scene.h"
 #include "SceneManager.h"
 
@@ -15,6 +16,17 @@ dae::IngredientComponent::IngredientComponent(GameObject* owner)
 
 void dae::IngredientComponent::Update(float deltaTime)
 {
+	if(!m_Peter)
+	{
+		for (auto& obj : SceneManager::GetInstance().GetActiveScene().GetObjects())
+		{
+			if (obj->GetTag() == "PETER")
+			{
+				m_Peter = obj.get();
+				break;
+			}
+		}
+	}
 	HandleMovement(deltaTime);
 	HandleCollision(deltaTime);
 }
@@ -34,6 +46,7 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 {
 	if (m_State == State::idle)
 	{
+		m_Next = false;
 		m_Enemies.clear();
 		bool onPlatform = false;
 		for (auto& obj : SceneManager::GetInstance().GetActiveScene().GetObjects())
@@ -44,6 +57,7 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 				if (m_Collisions[i]->IsOverlapping(obj.get()))
 					if (obj->GetTag().compare("PETER") == 0)
 					{
+						m_Peter = obj.get();
 						m_DropStates[i] = true;
 						m_Sprites[i]->SetOffsetY(5);
 					}
@@ -81,6 +95,18 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 			m_Sprites[i]->SetOffsetY(0);
 		}
 		m_LevelsToFall = (int)m_Enemies.size();
+		if(m_LevelsToFall==1)
+			m_Peter->GetComponent<PeterPepperComponent>()->AddPoints(500);
+		if (m_LevelsToFall == 2)
+			m_Peter->GetComponent<PeterPepperComponent>()->AddPoints(1000);
+		else if (m_LevelsToFall == 3)
+			m_Peter->GetComponent<PeterPepperComponent>()->AddPoints(2000);
+		else if (m_LevelsToFall == 4)
+			m_Peter->GetComponent<PeterPepperComponent>()->AddPoints(4000);
+		else if (m_LevelsToFall == 5)
+			m_Peter->GetComponent<PeterPepperComponent>()->AddPoints(8000);
+		else if (m_LevelsToFall == 6)
+			m_Peter->GetComponent<PeterPepperComponent>()->AddPoints(1600);
 		for(auto& enemy:m_Enemies)
 		{
 			enemy->GetComponent<EnemyComponent>()->SetState(EnemyComponent::State::falling);
@@ -103,13 +129,18 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 									m_Platform = nullptr;
 									m_State = State::idle;
 									m_CollidedIngredient = nullptr;
-									
+
+									if(!m_Next)
+									for (auto enemyon : m_Enemies)
+										enemyon->GetComponent<EnemyComponent>()->Kill();
+
+									m_Peter->GetComponent<PeterPepperComponent>()->AddPoints(50);
 								}
 								else
 								{
 									m_Platform = obj.get();
 									--m_LevelsToFall;
-									
+									m_Peter->GetComponent<PeterPepperComponent>()->AddPoints(50);
 								}
 							}						
 					}
@@ -165,6 +196,8 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 						for (auto enemy : m_Enemies)
 							enemy->GetComponent<EnemyComponent>()->Kill();
 						m_Enemies.clear();
+
+						m_Peter->GetComponent<PeterPepperComponent>()->AddPoints(50);
 				}
 
 			}

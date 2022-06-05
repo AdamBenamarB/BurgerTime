@@ -43,5 +43,6 @@ namespace dae {
         int m_LevelsToFall{};
 
         bool m_Next = false;
+        GameObject* m_Peter{};
     };
 }

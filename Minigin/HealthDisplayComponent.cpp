@@ -30,7 +30,7 @@ void dae::HealthDisplayComponent::OnNotify(const GameObject* obj, Event event)
 {
 	switch (event)
 	{
-	case Event::ON_DEATH:
+	case Event::ON_HIT:
 		if(obj == m_HealthActor)
 		{
 			int livesAmt = obj->GetComponent<HealthComponent>()->GetLives();

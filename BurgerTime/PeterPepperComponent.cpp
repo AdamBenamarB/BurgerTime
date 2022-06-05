@@ -5,7 +5,9 @@
 #include "AnimatedRenderComponent.h"
 #include "CollisionComponent.h"
 #include "GameObject.h"
+#include "HealthComponent.h"
 #include "PlatformComponent.h"
+#include "PointsComponent.h"
 #include "Scene.h"
 #include "SceneManager.h"
 
@@ -16,6 +18,16 @@ dae::PeterPepperComponent::PeterPepperComponent(GameObject* owner)
 
 void dae::PeterPepperComponent::Update(float deltaTime)
 {
+	if(m_Hit)
+	{
+		m_ElapsedInv += deltaTime;
+		if(m_ElapsedInv>m_m_InvTime)
+		{
+			m_Hit = false;
+			m_ElapsedInv = 0;
+		}
+	}
+
 	HandleMovement(deltaTime);
 	HandleCollision(deltaTime);
 	HandleAnim();
@@ -207,4 +219,31 @@ void dae::PeterPepperComponent::SetState(State state)
 	case State::down:
 		break;
 	}
+}
+
+void dae::PeterPepperComponent::Hit()
+{
+	if(!m_Hit)
+	{
+		m_Hit = true;
+		m_GameObject->GetComponent<HealthComponent>()->Hit();
+	}
+}
+
+void dae::PeterPepperComponent::AddPoints(GameObject* go)
+{
+	std::string tag = go->GetTag();
+
+	if (tag == "MRHOTDOG")
+		m_GameObject->GetComponent<PointsComponent>()->AddPoints(100);
+	else if (tag == "MRPICKLE")
+		m_GameObject->GetComponent<PointsComponent>()->AddPoints(200);
+	else if (tag == "MREGG")
+		m_GameObject->GetComponent<PointsComponent>()->AddPoints(300);
+}
+
+void dae::PeterPepperComponent::AddPoints(int amt)
+{
+	m_GameObject->GetComponent<PointsComponent>()->AddPoints(amt);
+	
 }

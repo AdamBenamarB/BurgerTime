@@ -22,14 +22,7 @@ namespace dae
 	private:
 		std::shared_ptr<GameObject>  object;
 	};
-
-	class KillCommand : public Command
-	{
-	public:
-		KillCommand(std::shared_ptr<GameObject> obj) :Command(obj) {}
-		void Execute() override { GetGameObject()->GetComponent<HealthComponent>()->Kill(); }
-	};
-
+	
 	class AddPointsCommand : public Command
 	{
 	public:
