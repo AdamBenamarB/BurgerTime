@@ -171,6 +171,8 @@
     <ClCompile Include="Bun.cpp" />
     <ClCompile Include="Cheese.cpp" />
     <ClCompile Include="EnemyComponent.cpp" />
+    <ClCompile Include="EnemySpawnComponent.cpp" />
+    <ClCompile Include="EnemySpawner.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="IngredientComponent.cpp" />
     <ClCompile Include="Ladder.cpp" />
@@ -193,6 +195,8 @@
     <ClInclude Include="Bun.h" />
     <ClInclude Include="Cheese.h" />
     <ClInclude Include="EnemyComponent.h" />
+    <ClInclude Include="EnemySpawnComponent.h" />
+    <ClInclude Include="EnemySpawner.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="IngredientComponent.h" />
     <ClInclude Include="Ladder.h" />

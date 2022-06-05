@@ -31,7 +31,7 @@ void dae::MrEgg::Initialize(dae::Scene& scene, Vec2 loc,GameObject* peter)
 
 	go->SetTag("MREGG");
 
-	go->GetTransform()->SetPosition(loc.x + 16, loc.y + 16, 0);
+	go->GetTransform()->SetPosition(loc.x + 24, loc.y + 28, 0);
 	scene.Add(go, 0);
 
 

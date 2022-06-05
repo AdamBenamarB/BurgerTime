@@ -90,19 +90,9 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 	{
 		for (auto& obj : SceneManager::GetInstance().GetActiveScene().GetObjects())
 		{
+
 			if (m_Collisions[1]->IsOverlapping(obj.get()))
 			{
-				if (auto enemy = obj->GetComponent<EnemyComponent>())
-				{
-					bool enemyOn = false;
-					for (auto enemyon : m_Enemies)
-						if (enemyon == obj.get())
-							enemyOn = true;
-
-					if (!enemyOn)
-					enemy->Kill();
-				}
-
 				if (obj.get() != m_Platform)
 					if (obj->GetTag().compare("PLATFORM") == 0)
 					{						
@@ -113,7 +103,7 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 									m_Platform = nullptr;
 									m_State = State::idle;
 									m_CollidedIngredient = nullptr;
-									m_Enemies.clear();
+									
 								}
 								else
 								{
@@ -122,21 +112,36 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 									
 								}
 							}						
-					}				
+					}
+
+				if (auto enemy = obj->GetComponent<EnemyComponent>())
+				{
+					if (!m_Next)
+					{
+						bool enemyOn = false;
+						for (auto enemyon : m_Enemies)
+							if (enemyon == obj.get())
+								enemyOn = true;
+
+						if (!enemyOn)
+							enemy->Kill();
+					}
+				}
+
 
 				if (auto comp = obj->GetComponent<IngredientComponent>())
 				{
 					if (comp->m_State == State::plated)
 					{
 						m_State = State::plated;
-						for(auto& enemy:m_Enemies)
+						for(auto enemy:m_Enemies)
 						{
 							enemy->GetComponent<EnemyComponent>()->Kill();
 						}
 						m_Enemies.clear();
 					}
 					else {
-						for (auto enemy : m_Enemies)
+					for (auto enemy : m_Enemies)
 						{
 							bool exists = false;
 							for (auto existing : comp->m_Enemies)
@@ -145,10 +150,11 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 							if(!exists)
 									comp->m_Enemies.push_back(enemy);
 
-							m_Enemies.clear();
 						}
+						m_Enemies.clear();
 						m_CollidedIngredient = obj.get();
 						comp->SetState(State::falling);
+						m_Next = true;
 					}
 				}
 

@@ -6,6 +6,7 @@
 #include "BottomBun.h"
 #include "Bun.h"
 #include "Cheese.h"
+#include "EnemySpawner.h"
 #include "istreamwrapper.h"
 #include "Ladder.h"
 #include "Lettuce.h"
@@ -78,12 +79,15 @@ void LevelLoader::LoadLevel(std::string fileLoc)
 				}
 				if (type == "peter")
 				{
-					dae::PeterPepper peter{ scene,{x.GetFloat(),y.GetFloat()} };
-					dae::MrEgg{ scene,{64,64},peter.GetGameObject() };
+					dae::PeterPepper{ scene,{x.GetFloat(),y.GetFloat()} };
 				}
 				if (type == "bounds")
 				{
 					bounds.push_back({ x.GetFloat(),y.GetFloat() });
+				}
+				if (type == "enemy")
+				{
+					EnemySpawner{ scene,{x.GetFloat(),y.GetFloat()} };
 				}
 
 			}

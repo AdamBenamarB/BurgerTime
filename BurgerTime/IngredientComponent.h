@@ -41,5 +41,7 @@ namespace dae {
         std::vector<GameObject*> m_Enemies{};
 
         int m_LevelsToFall{};
+
+        bool m_Next = false;
     };
 }
