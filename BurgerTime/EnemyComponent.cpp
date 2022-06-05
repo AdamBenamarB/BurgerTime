@@ -8,7 +8,6 @@
 #include "PlatformComponent.h"
 #include "Scene.h"
 #include "SceneManager.h"
-
 dae::EnemyComponent::EnemyComponent(GameObject* owner)
 	:Component(owner)
 {

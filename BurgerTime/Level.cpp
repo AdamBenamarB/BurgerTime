@@ -14,6 +14,7 @@
 #include "Tomato.h"
 #include "GameObject.h"
 #include "CollisionComponent.h"
+#include "LevelLoader.h"
 #include "MrEgg.h"
 #include "Scene.h"
 #include "Wall.h"
@@ -24,21 +25,12 @@ dae::Level::Level(Scene& scene)
 }
 
 
-void dae::Level::Initialize(Scene& scene)
+void dae::Level::Initialize(Scene&)// scene)
 {
-	dae::PeterPepper peter{ scene,{310,576} };
-
-	/*auto go = std::make_shared<dae::GameObject>();
-	auto rc = go->AddComponent<dae::RenderComponent>();
-	rc->SetTexture("\\Sprites\\PeterPepper\\peter.png");
-	rc->SetDimensions(48, 48);
-	auto enemy = go->AddComponent<dae::EnemyComponent>();
-	enemy->SetPeter(peter.GetGameObject());
-	auto col = go->AddComponent<dae::CollisionComponent>();
-	col->SetSize(48, 48);
-
-	go->GetTransform()->SetPosition(64, 32, 0);
-	scene.Add(go, 1);*/
+	LevelLoader loader{};
+	loader.LoadLevel("../Data/Levels/level1.json");
+	/*dae::PeterPepper peter{ scene,{310,576} };
+	
 	scene.SetBounds({ Vec2{0,14},Vec2{800,590} });
 	dae::MrEgg egg{ scene,{64,64},peter.GetGameObject() };
 
@@ -83,7 +75,7 @@ void dae::Level::Initialize(Scene& scene)
 	dae::Ladder{ scene,{448,384} };
 	dae::Ladder{ scene,{448,448} };
 	dae::Ladder{ scene,{448,512} };
-	dae::Ladder{ scene,{448,576} };
+	dae::Ladder{ scene,{448,512} };
 
 	dae::Ladder{ scene,{576,64} };
 	dae::Ladder{ scene,{576,128} };
@@ -111,7 +103,7 @@ void dae::Level::Initialize(Scene& scene)
 
 	dae::Ladder{ scene,{384,192} };
 	dae::Ladder{ scene,{384,256} };
-	dae::Ladder{ scene,{384,320} };
+	dae::Ladder{ scene,{384,256} };
 	
 	dae::Ladder{ scene,{512,320} };
 	dae::Ladder{ scene,{512,384} };
@@ -153,7 +145,7 @@ void dae::Level::Initialize(Scene& scene)
 	dae::Platform{ scene,{384,576} };
 	dae::Platform{ scene,{448,576} };
 	dae::Platform{ scene,{512,576} };
-	dae::Platform{ scene,{576,576} };
+	dae::Platform{ scene,{512,576} };
 
 	dae::Platform{ scene,{192,192} };
 	dae::Platform{ scene,{256,192} };
@@ -196,7 +188,7 @@ void dae::Level::Initialize(Scene& scene)
 	dae::Plate{ scene, {128,704} };
 	dae::Plate{ scene, {256,704} };
 	dae::Plate{ scene, {384,704} };
-	dae::Plate{ scene, {512,704} };
+	dae::Plate{ scene, {512,704} };*/
 
 	//dae::Wall wall{ scene,Vec2{128,0} };
 	/*dae::Platform plat{ scene,Vec2{0,0} };

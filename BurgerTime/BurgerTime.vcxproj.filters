@@ -19,6 +19,9 @@
     <Filter Include="Components">
       <UniqueIdentifier>{12f6b709-9094-4ec5-afb9-1c8462fa8f2f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Misc">
+      <UniqueIdentifier>{45d76e79-783f-4229-a50a-a880080540fd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -78,6 +81,9 @@
     <ClCompile Include="MrEgg.cpp">
       <Filter>Prefabs</Filter>
     </ClCompile>
+    <ClCompile Include="LevelLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -133,6 +139,9 @@
     </ClInclude>
     <ClInclude Include="MrEgg.h">
       <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelLoader.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
