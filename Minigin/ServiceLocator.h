@@ -18,5 +18,6 @@ namespace dae {
 		static void RegisterSoundSystem(SoundSystem* ss) {
 			m_SSInstance = ss == nullptr ? &m_DefaultSS : ss;
 		}
+		static void DestroySoundSystem();
 	};
 }

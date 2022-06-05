@@ -12,6 +12,7 @@ namespace dae {
 
 		virtual int AddSound(std::string loc);
 		virtual void Play(int id,int volume);
+
 		~SoundSystem();
 
 	private:

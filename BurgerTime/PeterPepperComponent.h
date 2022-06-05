@@ -41,7 +41,6 @@ namespace dae {
             m_ClimbDown{};
 
         bool m_OnPlatform{ false },
-            m_OnLadder{ false },
-            m_Colliding{ false };
+            m_OnLadder{ false };
     };
 }

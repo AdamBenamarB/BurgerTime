@@ -46,8 +46,8 @@ void dae::Minigin::Initialize()
 		"Programming 4 assignment",
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
-		1280,
-		720,
+		704,
+		896,
 		//640,
 		//480,
 		SDL_WINDOW_OPENGL
@@ -63,7 +63,8 @@ void dae::Minigin::Initialize()
 	}
 
 	Renderer::GetInstance().Init(m_Window);
-	
+
+	ServiceLocator::RegisterSoundSystem(new SoundSystem());
 }
 
 /**
@@ -78,6 +79,7 @@ void dae::Minigin::Cleanup()
 	Renderer::GetInstance().Destroy();
 	SDL_DestroyWindow(m_Window);
 	m_Window = nullptr;
+	ServiceLocator::DestroySoundSystem();
 	Mix_Quit();
 	SDL_Quit();
 }

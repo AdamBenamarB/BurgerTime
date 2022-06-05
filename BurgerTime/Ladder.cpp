@@ -19,7 +19,8 @@ void dae::Ladder::Initialize(dae::Scene& scene, Vec2 loc)
 	rc->SetDimensions(64, 64);
 
 	auto col = go->AddComponent<CollisionComponent>();
-	col->SetSize(64, 64);
+	col->SetSize(48, 66);
+	col->SetOffset(8, -2);
 	go->GetTransform()->SetPosition(loc.x, loc.y, 0);
 
 	go->SetTag("LADDER");

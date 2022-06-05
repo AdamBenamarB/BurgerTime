@@ -26,7 +26,7 @@ namespace dae {
         EnemyComponent(GameObject* owner);
         void Update(float deltaTime) override;
 
-        void SetPeter(GameObject* peterObj) { m_Peter = peterObj; }
+        void SetPeter(GameObject* peterObj);// { m_Peter = peterObj; }
 
         void SetState(State state);// { m_State = state; }
 
@@ -35,15 +35,19 @@ namespace dae {
         void HandleMovement(float deltaTime);
         void HandleCollision(float deltaTime);
         void HandleAnim() const;
+        void Initialize();
         State m_State = State::left;
 
-        float m_Speed{ 60.f },
-            m_ClimbSpeed{ 40.f },
+        float m_Speed{ 50.f },
+            m_ClimbSpeed{ 30.f },
     		m_FallSpeed{150.f};
 
         bool m_OnPlatform{ false },
             m_OnLadder{ false },
-            m_Colliding{ false };
+            m_Horizontal{ false },
+            m_Switched{ false };
+
+        Bounds m_Bounds{};
 
         GameObject* m_Peter{},
             * m_CurrentPlatform{};

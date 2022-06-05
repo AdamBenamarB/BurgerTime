@@ -7,3 +7,9 @@ struct Rect
 {
 	float x, y, width, height;
 };
+
+struct Bounds
+{
+	Vec2 topLeft,
+		bottomRight;
+};

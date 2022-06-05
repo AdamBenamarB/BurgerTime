@@ -13,8 +13,8 @@ dae::SoundSystem::SoundSystem()
 
 dae::SoundSystem::~SoundSystem()
 {
-	m_Thread.join();
 	m_Active = false;
+	m_Thread.join();
 }
 
 void dae::SoundSystem::Initialize()
@@ -32,7 +32,7 @@ int dae::SoundSystem::AddSound(std::string loc)
 
 void dae::SoundSystem::CheckQueue()
 {
-	//while (m_Active)
+	while (m_Active)
 	{
 		while (m_ToBePlayed.size() > 0)
 		{

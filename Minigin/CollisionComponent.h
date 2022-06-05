@@ -1,5 +1,7 @@
 #pragma once
 #include "Component.h"
+#include "Structs.h"
+
 namespace dae {
     class CollisionComponent :
         public Component
@@ -10,7 +12,11 @@ namespace dae {
         void SetOffset(float x, float y);
 
         bool IsOverlapping(GameObject* other);
+        bool IsOverlapping(Rect other);
         bool IsUnder(GameObject* other);
+        bool IsUnder(Rect other);
+
+        bool IsToSide(GameObject* other);
     private:
         float m_Width{},
             m_Height{};

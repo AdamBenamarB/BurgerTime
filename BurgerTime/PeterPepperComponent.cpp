@@ -89,16 +89,25 @@ void dae::PeterPepperComponent::HandleMovement(float deltaTime)
 void dae::PeterPepperComponent::HandleCollision(float deltaTime)
 {
 	auto pos = m_GameObject->GetTransform()->GetPosition();
-	m_Colliding = false;
+
 	bool underLadder = false;
 	int ladders = 0;
-
+	int platforms = 0;
+	bool offPlatform = false;
 	for (auto& obj : SceneManager::GetInstance().GetActiveScene().GetObjects())
 	{
 		if (m_GameObject->GetComponent<CollisionComponent>()->IsOverlapping(obj.get()))
 		{
-			if (obj->GetTag().compare("WALL") == 0)
-				m_Colliding = true;
+			/*if (obj->GetTag().compare("WALL") == 0)
+				m_Colliding = true;*/
+			if (obj->GetTag().compare("PLATFORM") == 0)
+			{
+				++platforms;
+				if (m_GameObject->GetComponent<CollisionComponent>()->IsToSide(obj.get()))
+				{
+					offPlatform = true;
+				}
+			}
 			else if (obj->GetTag().compare("LADDER") == 0)
 			{
 				++ladders;
@@ -112,7 +121,11 @@ void dae::PeterPepperComponent::HandleCollision(float deltaTime)
 	if (ladders > 1)
 		underLadder = false;
 
-	if (m_Colliding||underLadder)
+	if (platforms > 1)
+		offPlatform = false;
+
+
+	if (underLadder||offPlatform)
 	{
 		switch (m_State)
 		{
