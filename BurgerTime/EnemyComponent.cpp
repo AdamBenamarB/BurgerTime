@@ -43,7 +43,7 @@ void dae::EnemyComponent::HandleMovement(float deltaTime)
 			if (m_GameObject->GetComponent<CollisionComponent>()->IsOverlapping(obj.get()))
 				if (obj->GetTag().compare("PLATFORM") == 0)
 				{
-					//if (!m_GameObject->GetComponent<CollisionComponent>()->IsUnder(obj.get()))
+					if (!m_GameObject->GetComponent<CollisionComponent>()->IsUnder(obj.get()))
 					{
 						m_OnPlatform = true;
 						platform = obj->GetComponent<PlatformComponent>();
@@ -116,7 +116,7 @@ void dae::EnemyComponent::HandleMovement(float deltaTime)
 
 			}
 			
-			if(abs(m_Direction.y)>2.f && !m_Switched)
+			if(abs(m_Direction.y)>10.f && !m_Switched)
 				m_Horizontal = false;
 
 			else

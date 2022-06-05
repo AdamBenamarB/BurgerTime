@@ -92,54 +92,6 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 		{
 			if (m_Collisions[1]->IsOverlapping(obj.get()))
 			{
-				if (obj.get() != m_Platform)
-					if (obj->GetTag().compare("PLATFORM") == 0)
-					{
-						
-							if (!m_Collisions[1]->IsUnder(obj.get()))
-							{
-								if (m_LevelsToFall == 0)
-								{
-									m_Platform = nullptr;
-									m_State = State::idle;
-									m_CollidedIngredient = nullptr;
-								}
-								else
-								{
-									m_Platform = obj.get();
-									--m_LevelsToFall;
-									
-								}
-							}
-						
-					}
-				
-				if (auto comp = obj->GetComponent<IngredientComponent>())
-				{
-					if (comp->m_State == State::plated)
-					{
-						m_State = State::plated;
-						for(auto& enemy:m_Enemies)
-						{
-							enemy->GetComponent<EnemyComponent>()->Kill();
-						}
-					}
-					else {
-						m_CollidedIngredient = obj.get();
-						comp->SetState(State::falling);
-						comp->m_Enemies = m_Enemies;
-						m_Enemies.clear();
-					}
-				}
-
-				if (obj->GetTag().compare("PLATE") == 0)
-				{
-						m_State = State::plated;
-						for (auto enemy : m_Enemies)
-							enemy->GetComponent<EnemyComponent>()->Kill();
-						m_Enemies.clear();
-				}
-
 				if (auto enemy = obj->GetComponent<EnemyComponent>())
 				{
 					bool enemyOn = false;
@@ -150,6 +102,65 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 					if (!enemyOn)
 					enemy->Kill();
 				}
+
+				if (obj.get() != m_Platform)
+					if (obj->GetTag().compare("PLATFORM") == 0)
+					{						
+							if (!m_Collisions[1]->IsUnder(obj.get()))
+							{
+								if (m_LevelsToFall == 0)
+								{
+									m_Platform = nullptr;
+									m_State = State::idle;
+									m_CollidedIngredient = nullptr;
+									m_Enemies.clear();
+								}
+								else
+								{
+									m_Platform = obj.get();
+									--m_LevelsToFall;
+									
+								}
+							}						
+					}				
+
+				if (auto comp = obj->GetComponent<IngredientComponent>())
+				{
+					if (comp->m_State == State::plated)
+					{
+						m_State = State::plated;
+						for(auto& enemy:m_Enemies)
+						{
+							enemy->GetComponent<EnemyComponent>()->Kill();
+						}
+						m_Enemies.clear();
+					}
+					else {
+						for (auto enemy : m_Enemies)
+						{
+							bool exists = false;
+							for (auto existing : comp->m_Enemies)
+								if (enemy == existing)
+									exists = true;
+							if(!exists)
+									comp->m_Enemies.push_back(enemy);
+
+							m_Enemies.clear();
+						}
+						m_CollidedIngredient = obj.get();
+						comp->SetState(State::falling);
+					}
+				}
+
+
+				if (obj->GetTag().compare("PLATE") == 0)
+				{
+						m_State = State::plated;
+						for (auto enemy : m_Enemies)
+							enemy->GetComponent<EnemyComponent>()->Kill();
+						m_Enemies.clear();
+				}
+
 			}
 		}
 
