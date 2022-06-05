@@ -23,6 +23,7 @@ namespace dae {
         void SetSprites(std::vector<RenderComponent*>& sprites);
 
         void SetState(State state);
+        //void SetLevelsToFall()
     private:
         void HandleMovement(float deltaTime);
         void HandleCollision(float deltaTime);
@@ -38,5 +39,7 @@ namespace dae {
             *m_Platform{ nullptr };
 
         std::vector<GameObject*> m_Enemies{};
+
+        int m_LevelsToFall{};
     };
 }

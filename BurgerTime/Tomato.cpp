@@ -75,7 +75,7 @@ void dae::Tomato::Initialize(dae::Scene& scene, Vec2 loc)
 	ingredient->SetSprites(sprites);
 
 	go->GetTransform()->SetPosition(loc.x, loc.y + 44, 0);
-	go->SetTag("Tomato");
+	go->SetTag("TOMATO");
 	scene.Add(go, 1);
 
 }

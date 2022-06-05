@@ -42,7 +42,7 @@ void dae::PeterPepperComponent::HandleMovement(float deltaTime)
 			}
 			else if (obj->GetTag().compare("LADDER") == 0)
 			{
-				ladderX = obj->GetTransform()->GetPosition().x+8;
+				ladderX = obj->GetTransform()->GetPosition().x+16;
 
 				if (abs(ladderX - m_GameObject->GetTransform()->GetPosition().x) < 10.f)
 				{
@@ -61,14 +61,14 @@ void dae::PeterPepperComponent::HandleMovement(float deltaTime)
 		if (!m_OnPlatform)
 			return;
 		pos.x -= m_Speed * deltaTime;
-		pos.y = platformY + 76;
+		pos.y = platformY + 92;
 		m_GameObject->GetTransform()->SetPosition(pos.x, pos.y, pos.z);
 		break;
 	case State::right:
 		if (!m_OnPlatform)
 			return;
 		pos.x += m_Speed * deltaTime;
-		pos.y = platformY + 76;
+		pos.y = platformY + 92;
 		m_GameObject->GetTransform()->SetPosition(pos.x, pos.y, pos.z);
 		break;
 	case State::up:

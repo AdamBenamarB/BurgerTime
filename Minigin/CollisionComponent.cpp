@@ -96,7 +96,7 @@ bool dae::CollisionComponent::IsUnder(Rect other)
 
 	glm::vec3 othercorner = { other.x+other.width,other.y+other.height,0 };
 
-	if (cornerpos.y > othercorner.y)
+	if (cornerpos.y < othercorner.y)
 		return true;
 
 	return false;

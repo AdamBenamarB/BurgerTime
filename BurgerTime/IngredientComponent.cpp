@@ -48,7 +48,14 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 						m_Sprites[i]->SetOffsetY(5);
 					}
 					else if (obj->GetComponent<EnemyComponent>())
-						m_Enemies.push_back(obj.get());
+					{
+						bool exists = false;
+						for (auto& enemy : m_Enemies)
+							if (enemy == obj.get())
+								exists = true;
+						if (!exists)
+							m_Enemies.push_back(obj.get());
+					}
 					else if(i==1)
 					{
 						if (obj->GetTag().compare("PLATFORM") == 0)
@@ -73,6 +80,7 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 			m_DropStates[i] = false;
 			m_Sprites[i]->SetOffsetY(0);
 		}
+		m_LevelsToFall = (int)m_Enemies.size();
 		for(auto& enemy:m_Enemies)
 		{
 			enemy->GetComponent<EnemyComponent>()->SetState(EnemyComponent::State::falling);
@@ -80,24 +88,32 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 	}
 	else if (m_State == State::falling)
 	{
-
 		for (auto& obj : SceneManager::GetInstance().GetActiveScene().GetObjects())
 		{
 			if (m_Collisions[1]->IsOverlapping(obj.get()))
 			{
-				if(m_Enemies.size()==0)
-				if(obj.get()!=m_Platform)
-				if (obj->GetTag().compare("PLATFORM") == 0)
-				{
-					if (!m_Collisions[1]->IsUnder(obj.get()))
+				if (obj.get() != m_Platform)
+					if (obj->GetTag().compare("PLATFORM") == 0)
 					{
-						m_Platform = nullptr;
-						m_State = State::idle;
-						m_CollidedIngredient = nullptr;
+						
+							if (!m_Collisions[1]->IsUnder(obj.get()))
+							{
+								if (m_LevelsToFall == 0)
+								{
+									m_Platform = nullptr;
+									m_State = State::idle;
+									m_CollidedIngredient = nullptr;
+								}
+								else
+								{
+									m_Platform = obj.get();
+									--m_LevelsToFall;
+									
+								}
+							}
+						
 					}
-				}
-
-				//if(obj.get()!=m_CollidedIngredient)
+				
 				if (auto comp = obj->GetComponent<IngredientComponent>())
 				{
 					if (comp->m_State == State::plated)

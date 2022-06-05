@@ -171,6 +171,33 @@ void dae::Level::Initialize(Scene& scene)
 	dae::Platform{ scene,{384,448} };
 	dae::Platform{ scene,{448,448} };
 
+
+	dae::Bun{ scene,{128,128} };
+	dae::Bun{ scene,{256,0} };
+	dae::Bun{ scene,{384,0} };
+	dae::Bun{ scene,{512,0} };
+
+	dae::Lettuce{ scene, {128,256} };
+	dae::Lettuce{ scene, {256,320} };
+	dae::Lettuce{ scene, {384,128} };
+	dae::Lettuce{ scene, {512,128} };
+
+
+	dae::Patty{ scene, {128,448} };
+	dae::Patty{ scene, {256,448} };
+	dae::Patty{ scene, {384,320} };
+	dae::Patty{ scene, {512,256} };
+
+	dae::BottomBun{ scene, {128,576} };
+	dae::BottomBun{ scene, {256,576} };
+	dae::BottomBun{ scene, {384,576} };
+	dae::BottomBun{ scene, {512,384} };
+
+	dae::Plate{ scene, {128,704} };
+	dae::Plate{ scene, {256,704} };
+	dae::Plate{ scene, {384,704} };
+	dae::Plate{ scene, {512,704} };
+
 	//dae::Wall wall{ scene,Vec2{128,0} };
 	/*dae::Platform plat{ scene,Vec2{0,0} };
 	dae::Platform plat2{ scene,Vec2{64,0} };
