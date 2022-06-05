@@ -4,6 +4,7 @@
 
 #include "CollisionComponent.h"
 #include "EnemyComponent.h"
+#include "GameInstance.h"
 #include "GameObject.h"
 #include "PeterPepperComponent.h"
 #include "Scene.h"
@@ -166,6 +167,8 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 							enemy->GetComponent<EnemyComponent>()->Kill();
 						}
 						m_Enemies.clear();
+						if (m_GameObject->GetTag() == "BUN")
+							GameInstance::GetInstance().FillPlate();
 					}
 					else {
 					for (auto enemy : m_Enemies)

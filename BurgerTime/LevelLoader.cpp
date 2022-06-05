@@ -7,6 +7,7 @@
 #include "Bun.h"
 #include "Cheese.h"
 #include "EnemySpawner.h"
+#include "GameInstance.h"
 #include "GameObject.h"
 #include "HealthComponent.h"
 #include "HealthDisplayComponent.h"
@@ -35,8 +36,8 @@ void LevelLoader::LoadLevel(std::string fileLoc)
 		jsonDoc.ParseStream(isw);
 
 		std::vector<Vec2> bounds{};
+		int plates{};
 
-		
 		using rapidjson::Value;
 		for (Value::ConstValueIterator itr = jsonDoc.Begin(); itr != jsonDoc.End(); ++itr)
 		{
@@ -83,6 +84,7 @@ void LevelLoader::LoadLevel(std::string fileLoc)
 				if (type == "plate")
 				{
 					dae::Plate{ scene,{x.GetFloat(),y.GetFloat()} };
+					++plates;
 				}
 				if (type == "peter")
 				{
@@ -116,5 +118,6 @@ void LevelLoader::LoadLevel(std::string fileLoc)
 			}
 		}
 			scene.SetBounds({ bounds[0], bounds[1] });
+			GameInstance::GetInstance().SetPlates(plates);
 	}
 }

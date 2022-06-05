@@ -81,14 +81,17 @@
     <ClCompile Include="MrEgg.cpp">
       <Filter>Prefabs</Filter>
     </ClCompile>
-    <ClCompile Include="LevelLoader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="EnemySpawnComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="EnemySpawner.cpp">
       <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelLoader.cpp">
+      <Filter>Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="GameInstance.cpp">
+      <Filter>Misc</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -146,14 +149,17 @@
     <ClInclude Include="MrEgg.h">
       <Filter>Prefabs</Filter>
     </ClInclude>
-    <ClInclude Include="LevelLoader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="EnemySpawnComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="EnemySpawner.h">
       <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelLoader.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="GameInstance.h">
+      <Filter>Misc</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

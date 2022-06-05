@@ -50,6 +50,6 @@ namespace dae {
             m_Hit{ false };
 
         float m_ElapsedInv{}
-        , m_m_InvTime{0.5f};
+        , m_m_InvTime{1.f};
     };
 }
