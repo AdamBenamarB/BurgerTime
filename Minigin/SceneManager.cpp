@@ -4,30 +4,34 @@
 
 void dae::SceneManager::Update(float deltaTime)
 {
-	/*for(auto& scene : m_Scenes)
+	if(m_ToRemove)
 	{
-		scene->Update(deltaTime);
-	}*/
+		if (m_ActiveScene == m_ToRemove)
+			m_ActiveScene = nullptr;
+
+		for(int i{};i<(int)m_Scenes.size();++i)
+		{
+			if(m_Scenes[i].get()==m_ToRemove)
+			{
+				m_Scenes[i].reset();
+				m_ToRemove = nullptr;
+				break;
+			}
+		}
+	}
+
 	if (m_ActiveScene)
 		m_ActiveScene->Update(deltaTime);
 }
 
 void dae::SceneManager::FixedUpdate(float timeStep)
 {
-	/*for (auto& scene : m_Scenes)
-	{
-		scene->FixedUpdate(timeStep);
-	}*/
 	if (m_ActiveScene)
 		m_ActiveScene->FixedUpdate(timeStep);
 }
 
 void dae::SceneManager::Render()
 {
-	/*for (const auto& scene : m_Scenes)
-	{
-		scene->Render();
-	}*/
 	if (m_ActiveScene)
 		m_ActiveScene->Render();
 }
@@ -50,4 +54,11 @@ void dae::SceneManager::SetActiveScene(std::string sceneName)
 dae::Scene& dae::SceneManager::GetActiveScene() const
 {
 	return *m_ActiveScene;
+}
+
+void dae::SceneManager::RemoveScene(Scene& scene)
+{
+	Scene* p = std::addressof(scene);
+	if(p)
+	m_ToRemove = p;
 }

@@ -130,10 +130,6 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 									m_State = State::idle;
 									m_CollidedIngredient = nullptr;
 
-									if(!m_Next)
-									for (auto enemyon : m_Enemies)
-										enemyon->GetComponent<EnemyComponent>()->Kill();
-
 									m_Peter->GetComponent<PeterPepperComponent>()->AddPoints(50);
 								}
 								else

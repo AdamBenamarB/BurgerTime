@@ -18,10 +18,15 @@ namespace dae
 
 		void SetActiveScene(std::string sceneName);
 		Scene& GetActiveScene() const;
+
+		void RemoveScene(Scene& scene);
 	private:
 		friend class Singleton<SceneManager>;
 		SceneManager() = default;
 		std::vector<std::shared_ptr<Scene>> m_Scenes;
 		Scene* m_ActiveScene{};
+
+		Scene* m_ToRemove{};
+
 	};
 }
