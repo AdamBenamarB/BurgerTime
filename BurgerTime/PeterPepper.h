@@ -5,6 +5,7 @@ struct Vec2;
 
 namespace dae
 {
+	class PointsComponent;
 	class Scene;
 	class GameObject;
 	class PeterPepper
@@ -18,11 +19,13 @@ namespace dae
 		PeterPepper& operator=(PeterPepper&& other) noexcept = delete;
 
 		GameObject* GetGameObject();
+		
 	private:
 		void Initialize(dae::Scene& scene,Vec2 loc);
 
 		float m_Height{ 32 },
 			m_Width{ 32 };
 		GameObject* m_Peter{};
+		
 	};
 }

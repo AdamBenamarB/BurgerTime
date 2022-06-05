@@ -10,10 +10,11 @@
 
 dae::HealthDisplayComponent::HealthDisplayComponent(GameObject* owner) : Component(owner)
 {
-	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 20);
+	auto font = ResourceManager::GetInstance().LoadFont("Burgertime.otf", 20);
 	m_TextComponent = owner->AddComponent<TextComponent>();
 	m_TextComponent->SetFont(font);
 	m_TextComponent->SetText("Lives: ");
+	m_TextComponent->SetColor(1, 1, 1, 1);
 }
 
 void dae::HealthDisplayComponent::SetActorToDisplay(GameObject* obj)

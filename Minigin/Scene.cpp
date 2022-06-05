@@ -78,6 +78,7 @@ void Scene::Render() const
 		}
 
 	}
+	
 }
 
 void Scene::Remove(dae::GameObject* obj)

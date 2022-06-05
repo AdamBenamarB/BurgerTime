@@ -2,11 +2,25 @@
 
 #include "SceneManager.h"
 #include "Level.h"
+#include "PeterPepper.h"
+#include "PointsComponent.h"
+#include "PointsDisplayComponent.h"
+#include "Scene.h"
+#include "GameObject.h"
+#include "ResourceManager.h"
+#include "TextComponent.h"
 
 void Game::LoadGame() const
 {
-	auto& scene = dae::SceneManager::GetInstance().CreateScene("Level");
+
+	auto& scene = dae::SceneManager::GetInstance().CreateScene("TEST");
 	dae::Level level{ scene };
+
+	
+	//dae::PeterPepper peter{ scene,{0,0} };
+	//auto pointsdisp = go->AddComponent<dae::PointsDisplayComponent>();
+	//pointsdisp->SetActorToDisplay(peter.GetGameObject());
+	//peter.GetGameObject()->GetComponent<dae::PointsComponent>()->AddObserver(pointsdisp);
 	/*auto go = std::make_shared<dae::GameObject>();
 	go->AddComponent<dae::IngredientComponent>();*/
 	//dae::ServiceLocator::RegisterSoundSystem(new dae::SoundSystem());

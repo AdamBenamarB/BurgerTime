@@ -15,7 +15,10 @@ void dae::RenderComponent::Render() const
 	{
 		auto pos = m_GameObject->GetComponent<Transform>()->GetPosition();
 
-		Renderer::GetInstance().RenderTexture(*m_Texture, pos.x+m_OffsetX, pos.y+m_OffsetY,m_Width,m_Height);
+		if (m_UseDimensions)
+			Renderer::GetInstance().RenderTexture(*m_Texture, pos.x + m_OffsetX, pos.y + m_OffsetY, m_Width, m_Height);
+		else
+			Renderer::GetInstance().RenderTexture(*m_Texture, pos.x + m_OffsetX, pos.y + m_OffsetY);
 	}
 }
 
@@ -31,6 +34,7 @@ void dae::RenderComponent::SetTexture(const std::string& filename)
 
 void dae::RenderComponent::SetDimensions(float width, float height)
 {
+	m_UseDimensions = true;
 	m_Width = width;
 	m_Height = height;
 }

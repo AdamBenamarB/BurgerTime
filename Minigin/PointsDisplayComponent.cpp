@@ -11,11 +11,12 @@
 
 
 dae::PointsDisplayComponent::PointsDisplayComponent(GameObject* owner) : Component(owner)
-{
-	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 20);
+{//I know I shouldn pass the components instead of making them in another comp
+	auto font = ResourceManager::GetInstance().LoadFont("Burgertime.otf", 20);
 	m_TextComponent = owner->AddComponent<TextComponent>();
 	m_TextComponent->SetFont(font);
 	m_TextComponent->SetText("Points: ");
+	m_TextComponent->SetColor(1, 1, 1,1);
 }
 
 void dae::PointsDisplayComponent::SetActorToDisplay(GameObject* obj)

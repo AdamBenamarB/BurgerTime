@@ -42,5 +42,7 @@ namespace dae {
 
         bool m_OnPlatform{ false },
             m_OnLadder{ false };
+
+        float
     };
 }

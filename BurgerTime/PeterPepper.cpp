@@ -22,6 +22,8 @@ void dae::PeterPepper::Initialize(dae::Scene& scene, Vec2 loc)
 	/*auto rc = go->AddComponent<dae::RenderComponent>();
 	rc->SetTexture("\\Sprites\\PeterPepper\\peter.png");
 	rc->SetDimensions(m_Height, m_Width);*/
+	go->AddComponent<PointsComponent>();
+	go->AddComponent<HealthComponent>();
 
 	auto rc = go->AddComponent<dae::AnimatedRenderComponent>();
 	rc->SetTexture("\\Sprites\\PeterPepper\\sprites.png");

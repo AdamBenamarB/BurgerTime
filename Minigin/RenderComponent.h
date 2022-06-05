@@ -17,11 +17,12 @@ namespace dae
 		void SetOffsetY(float y);
 	protected:
 		std::shared_ptr<Texture2D> m_Texture;
-		float m_Width{ 1 },
-			m_Height{ 1 };
+		float m_Width{},
+			m_Height{};
 	private:
 		float m_OffsetX{},
 			m_OffsetY{};
+		bool m_UseDimensions{false};
 	};
 }
 

@@ -48,8 +48,6 @@ void dae::Minigin::Initialize()
 		SDL_WINDOWPOS_CENTERED,
 		704,
 		896,
-		//640,
-		//480,
 		SDL_WINDOW_OPENGL
 	);
 	if (m_Window == nullptr) 
@@ -72,6 +70,7 @@ void dae::Minigin::Initialize()
  */
 void dae::Minigin::LoadGame() const
 {
+	
 }
 
 void dae::Minigin::Cleanup()
