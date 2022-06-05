@@ -123,3 +123,20 @@ bool dae::CollisionComponent::IsToSide(GameObject* other)
 
 	return false;
 }
+
+bool dae::CollisionComponent::IsToSide(Rect other)
+{
+	auto pos = m_GameObject->GetTransform()->GetPosition();
+	pos.x += m_OffsetX;
+	pos.y += m_OffsetY;
+	glm::vec3 cornerpos{ pos.x + m_Width,pos.y + m_Height,pos.z };
+
+	glm::vec3 otherpos{ other.x,other.y,0 };
+	glm::vec3 othercorner = { other.x + other.width,other.y + other.height,0 };
+
+	if (pos.x>otherpos.x||cornerpos.x<othercorner.x)
+		return true;
+
+	return false;
+}
+

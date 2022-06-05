@@ -9,5 +9,6 @@ namespace dae {
         PlatformComponent(GameObject* owner);
         Vec2 GetFloorPos() const;
         bool IsUnder(Rect other) const;
+        bool IsToSide(Rect other) const;
     };
 }

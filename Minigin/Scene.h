@@ -12,6 +12,7 @@ namespace dae
 	public:
 		void Add(const std::shared_ptr<GameObject>& object);
 		void Add(const std::shared_ptr<GameObject>& object,int renderPriority);
+		void Remove(dae::GameObject* obj);
 
 		std::vector<std::shared_ptr<GameObject>>&GetObjects() { return m_Objects; }
 		std::string& GetName() { return m_Name; }
@@ -31,12 +32,13 @@ namespace dae
 
 	private: 
 		explicit Scene(const std::string& name);
-
+		void DeleteObjects();
 		std::string m_Name;
 		std::vector < std::shared_ptr<GameObject>> m_ObjectsFirst{};
 		std::vector < std::shared_ptr<GameObject>> m_ObjectsSecond{};
 		std::vector < std::shared_ptr<GameObject>> m_ObjectsThird{};
 		std::vector < std::shared_ptr<GameObject>> m_Objects{};
+		std::vector<dae::GameObject*> m_ToRemove{};
 
 		Bounds m_Bounds{};
 

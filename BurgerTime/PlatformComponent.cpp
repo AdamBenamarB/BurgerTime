@@ -20,3 +20,8 @@ bool dae::PlatformComponent::IsUnder(Rect other) const
 {
 	return m_GameObject->GetComponent<CollisionComponent>()->IsUnder(other);
 }
+
+bool dae::PlatformComponent::IsToSide(Rect other) const
+{
+	return m_GameObject->GetComponent<CollisionComponent>()->IsToSide(other);
+}

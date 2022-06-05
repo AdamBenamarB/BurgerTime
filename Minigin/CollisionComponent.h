@@ -17,6 +17,7 @@ namespace dae {
         bool IsUnder(Rect other);
 
         bool IsToSide(GameObject* other);
+        bool IsToSide(Rect other);
     private:
         float m_Width{},
             m_Height{};

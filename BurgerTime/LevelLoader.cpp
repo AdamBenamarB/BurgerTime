@@ -9,6 +9,7 @@
 #include "istreamwrapper.h"
 #include "Ladder.h"
 #include "Lettuce.h"
+#include "MrEgg.h"
 #include "Patty.h"
 #include "PeterPepper.h"
 #include "Plate.h"
@@ -20,6 +21,7 @@
 void LevelLoader::LoadLevel(std::string fileLoc)
 {
 	auto& scene = dae::SceneManager::GetInstance().CreateScene("TEST");
+	
 	if(std::ifstream is{fileLoc})
 	{
 		rapidjson::IStreamWrapper isw{ is };
@@ -76,7 +78,8 @@ void LevelLoader::LoadLevel(std::string fileLoc)
 				}
 				if (type == "peter")
 				{
-					dae::PeterPepper{ scene,{x.GetFloat(),y.GetFloat()} };
+					dae::PeterPepper peter{ scene,{x.GetFloat(),y.GetFloat()} };
+					dae::MrEgg{ scene,{64,64},peter.GetGameObject() };
 				}
 				if (type == "bounds")
 				{

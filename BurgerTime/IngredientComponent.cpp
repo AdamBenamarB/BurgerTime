@@ -121,19 +121,34 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 						m_State = State::plated;
 						for(auto& enemy:m_Enemies)
 						{
-							enemy->GetComponent<EnemyComponent>()->SetState(EnemyComponent::State::dead);
+							enemy->GetComponent<EnemyComponent>()->Kill();
 						}
 					}
 					else {
 						m_CollidedIngredient = obj.get();
 						comp->SetState(State::falling);
+						comp->m_Enemies = m_Enemies;
+						m_Enemies.clear();
 					}
 				}
 
 				if (obj->GetTag().compare("PLATE") == 0)
 				{
 						m_State = State::plated;
-					
+						for (auto enemy : m_Enemies)
+							enemy->GetComponent<EnemyComponent>()->Kill();
+						m_Enemies.clear();
+				}
+
+				if (auto enemy = obj->GetComponent<EnemyComponent>())
+				{
+					bool enemyOn = false;
+					for (auto enemyon : m_Enemies)
+						if (enemyon == obj.get())
+							enemyOn = true;
+
+					if (!enemyOn)
+					enemy->Kill();
 				}
 			}
 		}

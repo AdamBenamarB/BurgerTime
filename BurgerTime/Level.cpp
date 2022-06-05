@@ -27,8 +27,7 @@ dae::Level::Level(Scene& scene)
 
 void dae::Level::Initialize(Scene&)// scene)
 {
-	LevelLoader loader{};
-	loader.LoadLevel("../Data/Levels/level1.json");
+	LevelLoader::LoadLevel("../Data/Levels/level1.json");
 	/*dae::PeterPepper peter{ scene,{310,576} };
 	
 	scene.SetBounds({ Vec2{0,14},Vec2{800,590} });

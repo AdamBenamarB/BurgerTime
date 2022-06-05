@@ -8,10 +8,10 @@
 #include "PlatformComponent.h"
 #include "Scene.h"
 #include "SceneManager.h"
+
 dae::EnemyComponent::EnemyComponent(GameObject* owner)
 	:Component(owner)
 {
-	Initialize();
 }
 
 void dae::EnemyComponent::Update(float deltaTime)
@@ -33,6 +33,7 @@ void dae::EnemyComponent::HandleMovement(float deltaTime)
 		m_OnLadder = false;
 		float ladderX{};
 		float platformY{};
+		int platforms{};
 
 		PlatformComponent* platform = nullptr;
 		std::vector<GameObject*> ladderObj{};
@@ -42,11 +43,12 @@ void dae::EnemyComponent::HandleMovement(float deltaTime)
 			if (m_GameObject->GetComponent<CollisionComponent>()->IsOverlapping(obj.get()))
 				if (obj->GetTag().compare("PLATFORM") == 0)
 				{
-					if (!m_GameObject->GetComponent<CollisionComponent>()->IsUnder(obj.get()))
+					//if (!m_GameObject->GetComponent<CollisionComponent>()->IsUnder(obj.get()))
 					{
 						m_OnPlatform = true;
 						platform = obj->GetComponent<PlatformComponent>();
 						platformY = platform->GetFloorPos().y + 92;
+						++platforms;
 					}
 				}
 				else if (obj->GetTag().compare("LADDER") == 0)
@@ -102,29 +104,43 @@ void dae::EnemyComponent::HandleMovement(float deltaTime)
 		}
 		else if(m_OnLadder && m_OnPlatform)
 		{
-			if (!m_Switched) {
-			m_Horizontal = false;
-				if (ladderObj.size() == 1 && (pos.y>m_Bounds.topLeft.y&&pos.y<m_Bounds.bottomRight.y))
-					m_Horizontal = ladderObj.at(0)->GetComponent<CollisionComponent>()->IsUnder(Rect{ pos.x,pos.y + m_ClimbSpeed * deltaTime ,48,48 });
-				m_Switched = true;
-			}
+			m_Direction.x = peterpos.x - pos.x;
+			m_Direction.y = peterpos.y - pos.y;
 
-			if(!m_Horizontal)
+			m_Horizontal = true;
+			if (ladderObj.size() == 1)
 			{
-				if (m_Direction.y > 1.f)
+
+				if (m_Direction.y > 0)
+					m_Switched = ladderObj.at(0)->GetComponent<CollisionComponent>()->IsUnder(Rect{ pos.x,pos.y + m_ClimbSpeed * deltaTime ,32,34 });
+
+			}
+			
+			if(abs(m_Direction.y)>2.f && !m_Switched)
+				m_Horizontal = false;
+
+			else
+			{
+				m_Horizontal = true;
+			}
+			
+
+			if (!m_Horizontal)
+			{
+				if (m_Direction.y > 0.f)
 				{
 					pos.y += m_ClimbSpeed * deltaTime;
 					pos.x = ladderX;
 					m_State = State::down;
 				}
-				else if (m_Direction.y < -1.f)
+				else if (m_Direction.y < 0.f)
 				{
 					pos.y -= m_ClimbSpeed * deltaTime;
 					pos.x = ladderX;
 					m_State = State::up;
 				}
 			}
-			else 
+			else
 			{
 				if (m_Direction.x > 0.f)
 				{
@@ -194,6 +210,7 @@ void dae::EnemyComponent::HandleCollision(float deltaTime)
 		else if(offPlatform)
 			m_Direction.x = -m_Direction.x;
 
+
 		if (offPlatform || underLadder)
 		{
 			switch (m_State)
@@ -214,28 +231,7 @@ void dae::EnemyComponent::HandleCollision(float deltaTime)
 			m_GameObject->GetTransform()->SetPosition(pos.x, pos.y, pos.z);
 		}
 	}
-	/*else
-	{
-		for (auto& obj : SceneManager::GetInstance().GetActiveScene().GetObjects())
-		{
-			if (m_GameObject->GetComponent<CollisionComponent>()->IsOverlapping(obj.get()))
-			{
-				if (obj.get()!=m_CurrentPlatform && obj->GetTag().compare("PLATFORM") == 0)
-				{
-					if (!m_GameObject->GetComponent<CollisionComponent>()->IsUnder(obj.get()))
-					{
-						auto floorpos = obj->GetComponent<PlatformComponent>()->GetFloorPos();
-						pos.y = floorpos.y + 76;
-						m_GameObject->GetTransform()->SetPosition(pos.x, pos.y, pos.z);
-						m_State = State::left;
-						return;
-					}
-					
-				}
-				
-			}
-		}
-	}*/
+	
 }
 
 void dae::EnemyComponent::SetState(State state)
@@ -297,7 +293,7 @@ void dae::EnemyComponent::SetPeter(GameObject* peterObj)
 	m_Direction.y = peterpos.y - pos.y;
 }
 
-void dae::EnemyComponent::Initialize()
+void dae::EnemyComponent::Kill()
 {
-	m_Bounds = SceneManager::GetInstance().GetActiveScene().GetBounds();
+	SceneManager::GetInstance().GetActiveScene().Remove(m_GameObject);
 }
