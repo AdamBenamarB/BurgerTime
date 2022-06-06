@@ -34,6 +34,7 @@ namespace dae {
 
         void Kill();
     private:
+        void Initialize();
         void HandleMovement(float deltaTime);
         void HandleCollision(float deltaTime);
         void HandleAnim() const;
@@ -61,6 +62,10 @@ namespace dae {
             m_Climb{},
             m_ClimbDown{},
             m_Stunned{};
+
+        //Sound
+        int m_Hit{},
+            m_Fall{};
         
     };
 }

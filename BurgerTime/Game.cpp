@@ -5,8 +5,8 @@
 
 void Game::LoadGame() const
 {
-	NextScreen{};
-	//LevelLoader::LoadLevel("../Data/Levels/level1.json");
+	//NextScreen{};
+	LevelLoader::LoadLevel("../Data/Levels/level1.json");
 
 	//auto& scene = dae::SceneManager::GetInstance().CreateScene("TEST");
 	//dae::Level level{ scene };

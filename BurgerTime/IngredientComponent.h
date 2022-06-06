@@ -25,6 +25,7 @@ namespace dae {
         void SetState(State state);
         //void SetLevelsToFall()
     private:
+        void Initialize();
         void HandleMovement(float deltaTime);
         void HandleCollision(float deltaTime);
         State m_State = State::idle;
@@ -41,8 +42,13 @@ namespace dae {
         std::vector<GameObject*> m_Enemies{};
 
         int m_LevelsToFall{};
+        
 
         bool m_Next = false;
         GameObject* m_Peter{};
+
+        //SOUNDS
+        int m_Walk{}
+        , m_Bounce{};
     };
 }

@@ -9,10 +9,12 @@
 #include "PeterPepperComponent.h"
 #include "Scene.h"
 #include "SceneManager.h"
+#include "ServiceLocator.h"
 
 dae::IngredientComponent::IngredientComponent(GameObject* owner)
 	:Component(owner)
 {
+	Initialize();
 }
 
 void dae::IngredientComponent::Update(float deltaTime)
@@ -52,7 +54,13 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 		bool onPlatform = false;
 		for (auto& obj : SceneManager::GetInstance().GetActiveScene().GetObjects())
 		{
-
+			int amtDropped{};
+			for (int i{}; i < 4; ++i)
+			{
+				if (m_DropStates[i] == true)
+					++amtDropped;
+			}
+			
 			for (int i{}; i < m_Collisions.size(); ++i)
 			{
 				if (m_Collisions[i]->IsOverlapping(obj.get()))
@@ -79,6 +87,15 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 						}
 					}
 			}
+
+			int after{};
+			for (int i{}; i < 4; ++i)
+			{
+				if (m_DropStates[i] == true)
+					++after;
+			}
+			if(after>amtDropped)
+				ServiceLocator::GetSoundSystem().Play(m_Walk, 100);
 		}
 		if (!onPlatform)
 			m_State = State::falling;
@@ -132,6 +149,7 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 									m_CollidedIngredient = nullptr;
 
 									m_Peter->GetComponent<PeterPepperComponent>()->AddPoints(50);
+									ServiceLocator::GetSoundSystem().Play(m_Bounce, 100);
 								}
 								else
 								{
@@ -169,6 +187,7 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 						m_Enemies.clear();
 						if (m_GameObject->GetTag() == "BUN")
 							GameInstance::GetInstance().FillPlate();
+						ServiceLocator::GetSoundSystem().Play(m_Bounce, 100);
 					}
 					else {
 					for (auto enemy : m_Enemies)
@@ -197,6 +216,7 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 						m_Enemies.clear();
 
 						m_Peter->GetComponent<PeterPepperComponent>()->AddPoints(50);
+						ServiceLocator::GetSoundSystem().Play(m_Bounce, 100);
 				}
 
 			}
@@ -239,4 +259,10 @@ void dae::IngredientComponent::SetState(State state)
 			}
 		}
 	}
+}
+
+void dae::IngredientComponent::Initialize()
+{
+	m_Walk = dae::ServiceLocator::GetSoundSystem().AddSound("../Data/Sounds/ingredientwalk.wav");
+	m_Bounce = dae::ServiceLocator::GetSoundSystem().AddSound("../Data/Sounds/bounce.wav");
 }

@@ -9,10 +9,12 @@
 #include "PlatformComponent.h"
 #include "Scene.h"
 #include "SceneManager.h"
+#include "ServiceLocator.h"
 
 dae::EnemyComponent::EnemyComponent(GameObject* owner)
 	:Component(owner)
 {
+	Initialize();
 }
 
 void dae::EnemyComponent::Update(float deltaTime)
@@ -245,6 +247,8 @@ void dae::EnemyComponent::SetState(State state)
 	m_State = state;
 	if(m_State== State::falling)
 	{
+
+		ServiceLocator::GetSoundSystem().Play(m_Fall, 100);
 		auto& pos = m_GameObject->GetTransform()->GetPosition();
 		m_GameObject->GetTransform()->SetPosition(pos.x,pos.y+3,pos.z);
 	}
@@ -302,5 +306,15 @@ void dae::EnemyComponent::SetPeter(GameObject* peterObj)
 void dae::EnemyComponent::Kill()
 {
 	m_Peter->GetComponent<PeterPepperComponent>()->AddPoints(m_GameObject);
+
+
+	ServiceLocator::GetSoundSystem().Play(m_Hit, 100);
+
 	SceneManager::GetInstance().GetActiveScene().Remove(m_GameObject);
+}
+
+void dae::EnemyComponent::Initialize()
+{
+	m_Hit = dae::ServiceLocator::GetSoundSystem().AddSound("../Data/Sounds/enemyhit.wav");
+	m_Fall = dae::ServiceLocator::GetSoundSystem().AddSound("../Data/Sounds/enemyfall.wav");
 }
