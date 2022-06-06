@@ -34,16 +34,22 @@ namespace dae {
 
         void Kill();
 
+        void Stun();
+
     private:
         void Initialize();
         void HandleMovement(float deltaTime);
         void HandleCollision(float deltaTime);
         void HandleAnim() const;
+        void HandleStun(float deltaTime);
         State m_State = State::left;
 
         float m_Speed{ 60.f },//50 //30
             m_ClimbSpeed{ 40.f },
     		m_FallSpeed{150.f};
+
+        float m_StunTime{1.5f},
+            m_StunElapsed{};
 
         bool m_OnPlatform{ false },
             m_OnLadder{ false },

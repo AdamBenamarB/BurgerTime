@@ -23,12 +23,13 @@ void dae::EnemyComponent::Update(float deltaTime)
 	HandleMovement(deltaTime);
 	HandleCollision(deltaTime);
 	HandleAnim();
+	HandleStun(deltaTime);
 }
 
 void dae::EnemyComponent::HandleMovement(float deltaTime)
 {
 	auto pos = m_GameObject->GetTransform()->GetPosition();
-	if (m_State != State::falling)
+	if (m_State != State::falling && m_State != State::stunned)
 	{
 		const auto& peterpos = m_Peter->GetTransform()->GetPosition();
 		
@@ -170,7 +171,7 @@ void dae::EnemyComponent::HandleMovement(float deltaTime)
 
 		m_GameObject->GetTransform()->SetPosition(pos.x, pos.y, 0);
 	}
-	else
+	else if(m_State==State::falling)
 	{
 		pos.y += m_FallSpeed * deltaTime;
 		m_GameObject->GetTransform()->SetPosition(pos.x, pos.y, pos.z);
@@ -317,4 +318,22 @@ void dae::EnemyComponent::Initialize()
 {
 	m_Hit = dae::ServiceLocator::GetSoundSystem().AddSound("../Data/Sounds/enemyhit.wav");
 	m_Fall = dae::ServiceLocator::GetSoundSystem().AddSound("../Data/Sounds/enemyfall.wav");
+}
+
+void dae::EnemyComponent::HandleStun(float deltaTime)
+{
+	if(m_State==State::stunned)
+	{
+		m_StunElapsed += deltaTime;
+		if(m_StunElapsed>m_StunTime)
+		{
+			m_State = State::left;
+			m_StunElapsed = 0;
+		}
+	}
+}
+
+void dae::EnemyComponent::Stun()
+{
+	m_State = State::stunned;
 }

@@ -12,6 +12,7 @@
 #include "PointsComponent.h"
 #include "Scene.h"
 #include "SceneManager.h"
+#include "ServiceLocator.h"
 
 dae::PeterPepperComponent::PeterPepperComponent(GameObject* owner)
 	:Component(owner)
@@ -258,3 +259,4 @@ void dae::PeterPepperComponent::AddPoints(int amt)
 	m_GameObject->GetComponent<PointsComponent>()->AddPoints(amt);
 	
 }
+

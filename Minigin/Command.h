@@ -4,10 +4,12 @@
 #include "GameObject.h"
 #include "HealthComponent.h"
 #include "PointsComponent.h"
+#include "../BurgerTime/PepperComponent.h"
 #include "../BurgerTime/PeterPepperComponent.h"
 
 namespace dae
 {
+	class PepperComponent;
 	class PeterPepperComponent;
 	class HealthComponent;
 
@@ -77,6 +79,16 @@ namespace dae
 		void Execute() override
 		{
 			GetGameObject()->GetComponent<PeterPepperComponent>()->SetState(PeterPepperComponent::State::idle);
+		}
+	};
+
+	class Pepper :public Command
+	{
+	public:
+		Pepper(std::shared_ptr<GameObject> obj) : Command(obj) {}
+		void Execute() override
+		{
+			GetGameObject()->GetComponent<PepperComponent>()->Activate();
 		}
 	};
 }

@@ -13,7 +13,7 @@
 void GameInstance::FillPlate()
 {
 	++m_FullPlates;
-	if (m_FullPlates >= 1)//m_Plates)
+	if (m_FullPlates >= m_Plates)
 	{
 		auto& scene = dae::SceneManager::GetInstance().GetActiveScene();
 		dae::SceneManager::GetInstance().RemoveScene(scene);

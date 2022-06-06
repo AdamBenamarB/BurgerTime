@@ -102,6 +102,9 @@
     <ClCompile Include="NextScreen.cpp">
       <Filter>Prefabs</Filter>
     </ClCompile>
+    <ClCompile Include="PepperComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -178,6 +181,9 @@
     </ClInclude>
     <ClInclude Include="NextScreen.h">
       <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="PepperComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

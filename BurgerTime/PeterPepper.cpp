@@ -7,6 +7,7 @@
 #include "GameObject.h"
 #include "Input.h"
 #include "InputManager.h"
+#include "PepperComponent.h"
 #include "Scene.h"
 #include "ServiceLocator.h"
 
@@ -23,6 +24,7 @@ void dae::PeterPepper::Initialize(dae::Scene& scene, Vec2 loc)
 
 	go->AddComponent<PointsComponent>()->AddPoints(GameInstance::GetInstance().GetScore());
 	go->AddComponent<HealthComponent>();
+	go->AddComponent<PepperComponent>();
 
 	auto rc = go->AddComponent<dae::AnimatedRenderComponent>();
 	rc->SetTexture("\\Sprites\\PeterPepper\\sprites.png");
@@ -71,6 +73,11 @@ void dae::PeterPepper::Initialize(dae::Scene& scene, Vec2 loc)
 	controllerkey = Input::ControllerKey({ 0, dae::XBox360Controller::ControllerButton::DpadDown,Input::KeyState::OnReleased });
 	auto command23 = std::make_unique<dae::Idle>(go);
 	dae::InputManager::GetInstance().AddCommand(controllerkey, std::move(command23));
+
+	controllerkey = Input::ControllerKey({ 0, dae::XBox360Controller::ControllerButton::ButtonA,Input::KeyState::OnPressed });
+	auto command6 = std::make_unique<dae::Pepper>(go);
+	dae::InputManager::GetInstance().AddCommand(controllerkey, std::move(command6));
+
 
 }
 

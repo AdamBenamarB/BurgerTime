@@ -15,6 +15,8 @@ namespace dae
 		void SetDimensions(float width, float height);
 		void SetOffsetX(float x);
 		void SetOffsetY(float y);
+
+		void SetEnabled(bool enabled) { m_Enabled = enabled; }
 	protected:
 		std::shared_ptr<Texture2D> m_Texture;
 		float m_Width{},
@@ -23,6 +25,7 @@ namespace dae
 		float m_OffsetX{},
 			m_OffsetY{};
 		bool m_UseDimensions{false};
+		bool m_Enabled{ true };
 	};
 }
 

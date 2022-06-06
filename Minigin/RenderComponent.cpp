@@ -11,14 +11,17 @@ dae::RenderComponent::RenderComponent(GameObject* owner)
 {}
 void dae::RenderComponent::Render() const
 {
-	if (m_Texture != nullptr)
+	if (m_Enabled)
 	{
-		auto pos = m_GameObject->GetComponent<Transform>()->GetPosition();
+		if (m_Texture != nullptr)
+		{
+			auto pos = m_GameObject->GetComponent<Transform>()->GetPosition();
 
-		if (m_UseDimensions)
-			Renderer::GetInstance().RenderTexture(*m_Texture, pos.x + m_OffsetX, pos.y + m_OffsetY, m_Width, m_Height);
-		else
-			Renderer::GetInstance().RenderTexture(*m_Texture, pos.x + m_OffsetX, pos.y + m_OffsetY);
+			if (m_UseDimensions)
+				Renderer::GetInstance().RenderTexture(*m_Texture, pos.x + m_OffsetX, pos.y + m_OffsetY, m_Width, m_Height);
+			else
+				Renderer::GetInstance().RenderTexture(*m_Texture, pos.x + m_OffsetX, pos.y + m_OffsetY);
+		}
 	}
 }
 
