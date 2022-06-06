@@ -49,7 +49,7 @@ void GameInstance::LoadNextLevel()
 	else if (m_LevelIdx == 2)
 		LevelLoader::LoadLevel("../Data/Levels/level2.json");
 	else if (m_LevelIdx == 3)
-		LevelLoader::LoadLevel("../Data/Levels/level1.json");
+		LevelLoader::LoadLevel("../Data/Levels/level3.json");
 }
 
 void GameInstance::EndGame()
