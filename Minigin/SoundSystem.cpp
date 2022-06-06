@@ -27,6 +27,10 @@ void dae::SoundSystem::Initialize()
 
 int dae::SoundSystem::AddSound(std::string loc)
 {
+	for (int i{}; i << m_Clips.size(); ++i)
+		if (m_Clips[i]->GetFileLoc() == loc)
+			return i;
+
 	m_Clips.push_back(std::make_shared<AudioClip>(loc));
 	return (unsigned int)m_Clips.size()-1;
 }
@@ -38,9 +42,9 @@ void dae::SoundSystem::CheckQueue()
 		while (m_ToBePlayed.size() > 0)
 		{
 			m_Mutex.lock();
-			if (!m_Clips[m_ToBePlayed.back().id]->IsLoaded())
 				m_Clips[m_ToBePlayed.back().id]->Load();
-			m_Clips[m_ToBePlayed.back().id]->Play(m_ToBePlayed.back().volume,m_ToBePlayed.back().looping);
+			if (m_Clips[m_ToBePlayed.back().id]->IsLoaded())
+				m_Clips[m_ToBePlayed.back().id]->Play(m_ToBePlayed.back().volume,m_ToBePlayed.back().looping);
 			m_ToBePlayed.pop_back();
 			m_Mutex.unlock();
 		}

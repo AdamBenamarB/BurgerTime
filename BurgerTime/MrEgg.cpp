@@ -27,8 +27,8 @@ void dae::MrEgg::Initialize(dae::Scene& scene, Vec2 loc,GameObject* peter)
 	enemycomp->InitAnimation(rc, "\\Sprites\\Enemies\\egg.png");
 	
 	auto col = go->AddComponent<CollisionComponent>();
-	col->SetSize(28, 32.5f);
-	col->SetOffset(2, 0);
+	col->SetSize(20, 32.5f);
+	col->SetOffset(6, 0);
 
 	go->SetTag("MREGG");
 

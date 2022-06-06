@@ -19,12 +19,13 @@ public:
 	}
 	void Play(int volume, bool looping) const
 	{
-
+		if(m_Chunk){
 		Mix_VolumeChunk(m_Chunk, volume);
 		if(looping)
 		Mix_PlayChannel(-1, m_Chunk,-1);
 		else
 			Mix_PlayChannel(-1, m_Chunk, 0);
+		}
 	}
 private:
 	Mix_Chunk* m_Chunk{};
@@ -47,6 +48,7 @@ void dae::AudioClip::Play(int volume, bool looping) const
 
 void dae::AudioClip::Load()
 {
+	if(!pImpl)
 	pImpl = new AudioImpl(m_FileLoc);
 }
 

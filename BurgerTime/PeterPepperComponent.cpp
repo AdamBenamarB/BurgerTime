@@ -20,6 +20,7 @@ dae::PeterPepperComponent::PeterPepperComponent(GameObject* owner)
 
 dae::PeterPepperComponent::~PeterPepperComponent()
 {
+
 }
 
 

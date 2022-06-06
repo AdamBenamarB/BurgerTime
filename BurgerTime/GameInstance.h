@@ -15,6 +15,9 @@ public:
 	void LoadNextLevel();
 
 	int GetLevelNr() { return m_LevelIdx; }
+
+	void StartGame();
+	void EndGame();
 private:
 	int m_LevelIdx{ 1 };
 

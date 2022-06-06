@@ -5,6 +5,7 @@
 #include "AnimatedRenderComponent.h"
 #include "CollisionComponent.h"
 #include "GameObject.h"
+#include "IngredientComponent.h"
 #include "PeterPepperComponent.h"
 #include "PlatformComponent.h"
 #include "Scene.h"
@@ -206,6 +207,7 @@ void dae::EnemyComponent::HandleCollision(float deltaTime)
 						underLadder = true;
 					}
 				}
+				
 			}
 		}
 		if (ladders > 1)
@@ -247,7 +249,6 @@ void dae::EnemyComponent::SetState(State state)
 	m_State = state;
 	if(m_State== State::falling)
 	{
-
 		ServiceLocator::GetSoundSystem().Play(m_Fall, 100);
 		auto& pos = m_GameObject->GetTransform()->GetPosition();
 		m_GameObject->GetTransform()->SetPosition(pos.x,pos.y+3,pos.z);
@@ -307,9 +308,8 @@ void dae::EnemyComponent::Kill()
 {
 	m_Peter->GetComponent<PeterPepperComponent>()->AddPoints(m_GameObject);
 
-
 	ServiceLocator::GetSoundSystem().Play(m_Hit, 100);
-
+	//m_State = State::dead;
 	SceneManager::GetInstance().GetActiveScene().Remove(m_GameObject);
 }
 

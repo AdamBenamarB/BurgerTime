@@ -1,11 +1,14 @@
 ﻿#include "GameInstance.h"
 
+#include <iostream>
+
 #include "DeathScreen.h"
 #include "SceneManager.h"
 #include "LevelLoader.h"
 #include "NextScreen.h"
 #include "Scene.h"
 #include "ServiceLocator.h"
+#include <fstream>
 
 void GameInstance::FillPlate()
 {
@@ -47,4 +50,24 @@ void GameInstance::LoadNextLevel()
 		LevelLoader::LoadLevel("../Data/Levels/level1.json");
 	else if (m_LevelIdx == 3)
 		LevelLoader::LoadLevel("../Data/Levels/level1.json");
+}
+
+void GameInstance::EndGame()
+{
+	std::ofstream myfile;
+	myfile.open("../Data/score.txt");
+	myfile << m_HighScore;
+	myfile.close();
+	return;
+}
+
+void GameInstance::StartGame()
+{
+	std::fstream fs("../Data/score.txt", std::fstream::in);
+	int k;
+	while (fs >> k)
+	{
+		m_HighScore = k;
+	}
+	fs.close();
 }

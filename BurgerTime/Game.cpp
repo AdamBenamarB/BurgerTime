@@ -1,10 +1,12 @@
 #include "Game.h"
 
+#include "GameInstance.h"
 #include "LevelLoader.h"
 #include "NextScreen.h"
 
 void Game::LoadGame() const
 {
+	GameInstance::GetInstance().StartGame();
 	//NextScreen{};
 	LevelLoader::LoadLevel("../Data/Levels/level1.json");
 
@@ -118,4 +120,10 @@ void Game::LoadGame() const
 	//go->GetComponent<dae::PointsComponent>()->AddObserver(display);
 
 	//std::cout << "Button A to decrease lives, Button B to increase score\n";
+}
+
+void Game::Cleanup()
+{
+	GameInstance::GetInstance().EndGame();
+	Minigin::Cleanup();
 }

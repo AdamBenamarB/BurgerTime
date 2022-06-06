@@ -23,7 +23,8 @@ namespace dae {
         void SetSprites(std::vector<RenderComponent*>& sprites);
 
         void SetState(State state);
-        //void SetLevelsToFall()
+
+        bool Plated()const { return m_State == State::plated; }
     private:
         void Initialize();
         void HandleMovement(float deltaTime);

@@ -33,6 +33,7 @@ namespace dae {
         void InitAnimation(AnimatedRenderComponent* animComp,std::string textureLoc);
 
         void Kill();
+
     private:
         void Initialize();
         void HandleMovement(float deltaTime);

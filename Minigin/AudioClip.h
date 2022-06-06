@@ -15,6 +15,8 @@ namespace dae {
 		void Play(int volume, bool looping) const;
 		void Load();
 		bool IsLoaded() const;
+
+		std::string& GetFileLoc() { return m_FileLoc; }
 	private:
 		AudioImpl* pImpl{};
 		std::string m_FileLoc{};
