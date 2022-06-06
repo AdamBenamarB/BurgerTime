@@ -1,15 +1,17 @@
 ﻿#pragma once
 #include "RenderComponent.h"
+#include "Subject.h"
 
 namespace dae {
 	class GameObject;
 
-	class PepperComponent : public Component
+	class PepperComponent : public Component, public Subject
 	{
 	public:
 		PepperComponent(GameObject* owner);
 		void Update(float deltaTime)override;
 		void Activate();
+		int GetAmt()const { return m_Amt; }
 	private:
 		void Initialize();
 

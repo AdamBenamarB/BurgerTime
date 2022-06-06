@@ -105,6 +105,9 @@
     <ClCompile Include="PepperComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="PepperDisplayComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -183,6 +186,9 @@
       <Filter>Prefabs</Filter>
     </ClInclude>
     <ClInclude Include="PepperComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PepperDisplayComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>

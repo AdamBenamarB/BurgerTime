@@ -49,6 +49,7 @@ void dae::PepperComponent::Activate()
 					}
 			}
 			--m_Amt;
+			Notify(m_GameObject, Event::ON_PEPPER);
 			dae::ServiceLocator::GetSoundSystem().Play(m_Sound, 100);
 		}
 		else if (pp->GetState() == PeterPepperComponent::State::right)
@@ -67,6 +68,7 @@ void dae::PepperComponent::Activate()
 					}
 			}
 			--m_Amt;
+			Notify(m_GameObject, Event::ON_PEPPER);
 			dae::ServiceLocator::GetSoundSystem().Play(m_Sound, 100);
 		}
 		else if (pp->GetState() == PeterPepperComponent::State::up)
@@ -85,6 +87,7 @@ void dae::PepperComponent::Activate()
 					}
 			}
 			--m_Amt;
+			Notify(m_GameObject, Event::ON_PEPPER);
 			dae::ServiceLocator::GetSoundSystem().Play(m_Sound, 100);
 		}
 		else if (pp->GetState() == PeterPepperComponent::State::down)
@@ -103,6 +106,7 @@ void dae::PepperComponent::Activate()
 					}
 			}
 			--m_Amt;
+			Notify(m_GameObject, Event::ON_PEPPER);
 			dae::ServiceLocator::GetSoundSystem().Play(m_Sound, 100);
 		}
 		else

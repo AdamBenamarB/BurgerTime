@@ -16,6 +16,7 @@
 #include "Ladder.h"
 #include "Lettuce.h"
 #include "Patty.h"
+#include "PepperDisplayComponent.h"
 #include "PeterPepper.h"
 #include "Plate.h"
 #include "Platform.h"
@@ -107,6 +108,13 @@ void LevelLoader::LoadLevel(std::string fileLoc)
 					auto healthdisp = go->AddComponent<dae::HealthDisplayComponent>();
 					healthdisp->SetActorToDisplay(petergo);
 					petergo->GetComponent<dae::HealthComponent>()->AddObserver(healthdisp);
+					scene.Add(go);
+
+					go = std::make_shared<dae::GameObject>();
+					go->GetTransform()->SetPosition(560, 820, 0);
+					auto pepperdisp = go->AddComponent<dae::PepperDisplayComponent>();
+					pepperdisp->SetActorToDisplay(petergo);
+					petergo->GetComponent<dae::PepperComponent>()->AddObserver(pepperdisp);
 					scene.Add(go);
 				}
 				if (type == "bounds")
