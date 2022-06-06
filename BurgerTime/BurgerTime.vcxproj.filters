@@ -36,9 +36,6 @@
     <ClCompile Include="PeterPepperComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="Level.cpp">
-      <Filter>Prefabs</Filter>
-    </ClCompile>
     <ClCompile Include="Wall.cpp">
       <Filter>Prefabs</Filter>
     </ClCompile>
@@ -118,9 +115,6 @@
     </ClInclude>
     <ClInclude Include="PeterPepperComponent.h">
       <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Level.h">
-      <Filter>Prefabs</Filter>
     </ClInclude>
     <ClInclude Include="Wall.h">
       <Filter>Prefabs</Filter>

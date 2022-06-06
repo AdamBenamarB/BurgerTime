@@ -179,7 +179,6 @@
     <ClCompile Include="IngredientComponent.cpp" />
     <ClCompile Include="Ladder.cpp" />
     <ClCompile Include="Lettuce.cpp" />
-    <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelLoader.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MrEgg.cpp" />
@@ -221,7 +220,6 @@
     <ClInclude Include="Tomato.h" />
     <ClInclude Include="TransitionComponent.h" />
     <ClInclude Include="Wall.h" />
-    <ClInclude Include="Level.h" />
     <ClInclude Include="PeterPepper.h" />
     <ClInclude Include="PeterPepperComponent.h" />
   </ItemGroup>
