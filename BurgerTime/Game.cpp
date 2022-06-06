@@ -7,8 +7,7 @@
 void Game::LoadGame() const
 {
 	GameInstance::GetInstance().StartGame();
-	
-	LevelLoader::LoadLevel("../Data/Levels/level2.json");
+	NextScreen{};
 
 	
 }

@@ -105,6 +105,12 @@
     <ClCompile Include="PepperDisplayComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="MrHotDog.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="MrPickle.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -184,6 +190,12 @@
     </ClInclude>
     <ClInclude Include="PepperDisplayComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="MrHotDog.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="MrPickle.h">
+      <Filter>Prefabs</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

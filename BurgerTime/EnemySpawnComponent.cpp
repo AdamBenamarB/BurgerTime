@@ -6,6 +6,8 @@
 #include "EnemyComponent.h"
 #include "GameObject.h"
 #include "MrEgg.h"
+#include "MrHotDog.h"
+#include "MrPickle.h"
 #include "Scene.h"
 #include "SceneManager.h"
 
@@ -21,7 +23,7 @@ void dae::EnemySpawnComponent::Update(float deltaTime)
 	if(m_ELapsedTime>=m_TimePerSpawn)
 	{
 		m_ELapsedTime = 0;
-		//int random = rand() % 3;
+		int random = rand() % 4;
 
 		auto& scene = SceneManager::GetInstance().GetActiveScene();
 		if(!m_Peter)
@@ -37,10 +39,17 @@ void dae::EnemySpawnComponent::Update(float deltaTime)
 		auto& pos = m_GameObject->GetTransform()->GetPosition();
 			
 
-//		if(random == 0)
-		if(true)
+		if(random <2)
+		{
+			MrHotDog{ scene,{pos.x,pos.y},m_Peter };
+		}
+		else if (random == 2)
 		{
 			MrEgg{ scene,{pos.x,pos.y},m_Peter };
+		}
+		else if (random == 3)
+		{
+			MrPickle{ scene,{pos.x,pos.y},m_Peter };
 		}
 	}
 
