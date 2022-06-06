@@ -17,11 +17,14 @@ public:
 	{
 		Mix_FreeChunk(m_Chunk);
 	}
-	void Play(int volume) const
+	void Play(int volume, bool looping) const
 	{
 
 		Mix_VolumeChunk(m_Chunk, volume);
-		Mix_PlayChannel(-1, m_Chunk, 10);
+		if(looping)
+		Mix_PlayChannel(-1, m_Chunk,-1);
+		else
+			Mix_PlayChannel(-1, m_Chunk, 0);
 	}
 private:
 	Mix_Chunk* m_Chunk{};
@@ -37,9 +40,9 @@ dae::AudioClip::~AudioClip()
 	delete pImpl;
 }
 
-void dae::AudioClip::Play(int volume) const
+void dae::AudioClip::Play(int volume, bool looping) const
 {
-	pImpl->Play(volume);
+	pImpl->Play(volume, looping);
 }
 
 void dae::AudioClip::Load()

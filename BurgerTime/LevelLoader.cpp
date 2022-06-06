@@ -11,10 +11,10 @@
 #include "GameObject.h"
 #include "HealthComponent.h"
 #include "HealthDisplayComponent.h"
+#include "InputManager.h"
 #include "istreamwrapper.h"
 #include "Ladder.h"
 #include "Lettuce.h"
-#include "MrEgg.h"
 #include "Patty.h"
 #include "PeterPepper.h"
 #include "Plate.h"
@@ -23,12 +23,15 @@
 #include "PointsDisplayComponent.h"
 #include "Scene.h"
 #include "SceneManager.h"
+#include "ServiceLocator.h"
 #include "Tomato.h"
 
 void LevelLoader::LoadLevel(std::string fileLoc)
 {
-	auto& scene = dae::SceneManager::GetInstance().CreateScene("TEST");
-	
+	dae::InputManager::GetInstance().RemoveCommands();
+	auto& scene = dae::SceneManager::GetInstance().CreateScene("LEVEL");
+	int music = dae::ServiceLocator::GetSoundSystem().AddSound("../Data/Sounds/music.wav");
+	dae::ServiceLocator::GetSoundSystem().Play(music, 100,true);
 	if(std::ifstream is{fileLoc})
 	{
 		rapidjson::IStreamWrapper isw{ is };

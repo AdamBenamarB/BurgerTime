@@ -20,6 +20,7 @@ namespace dae
 
 		void AddCommand(Input::ControllerKey controllerKey, std::unique_ptr<Command> command);
 		void RemoveCommand(Input::ControllerKey controllerKey);
+		void RemoveCommands();
 
 		void AddController(int idx) { m_input.AddController(idx); }
 

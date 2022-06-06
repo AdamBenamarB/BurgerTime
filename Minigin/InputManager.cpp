@@ -86,3 +86,8 @@ void dae::InputManager::RemoveCommand(Input::ControllerKey controllerKey)
 {
 	m_input.m_consoleCommands.erase(controllerKey);
 }
+
+void dae::InputManager::RemoveCommands()
+{
+	m_input.m_consoleCommands.clear();
+}

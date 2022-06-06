@@ -2,6 +2,7 @@
 
 #include "AnimatedRenderComponent.h"
 #include "CollisionComponent.h"
+#include "GameInstance.h"
 #include "RenderComponent.h"
 #include "GameObject.h"
 #include "Input.h"
@@ -19,10 +20,8 @@ void dae::PeterPepper::Initialize(dae::Scene& scene, Vec2 loc)
 	auto go = std::make_shared<dae::GameObject>();
 	m_Peter = go.get();
 	auto ppcomp = go->AddComponent<PeterPepperComponent>();
-	/*auto rc = go->AddComponent<dae::RenderComponent>();
-	rc->SetTexture("\\Sprites\\PeterPepper\\peter.png");
-	rc->SetDimensions(m_Height, m_Width);*/
-	go->AddComponent<PointsComponent>();
+
+	go->AddComponent<PointsComponent>()->AddPoints(GameInstance::GetInstance().GetScore());
 	go->AddComponent<HealthComponent>();
 
 	auto rc = go->AddComponent<dae::AnimatedRenderComponent>();
@@ -34,7 +33,7 @@ void dae::PeterPepper::Initialize(dae::Scene& scene, Vec2 loc)
 	auto col = go->AddComponent<CollisionComponent>();
 	col->SetSize(28,32);
 	col->SetOffset(2, 0);
-	//col->SetOffset(16, 16);
+
 	go->SetTag("PETER");
 
 	go->GetTransform()->SetPosition(loc.x+24, loc.y+24, 0);

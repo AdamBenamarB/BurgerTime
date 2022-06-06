@@ -12,7 +12,7 @@ namespace dae {
 		AudioClip& operator= (const AudioClip&) = delete;
 		AudioClip& operator= (const AudioClip&&) = delete;
 
-		void Play(int volume) const;
+		void Play(int volume, bool looping) const;
 		void Load();
 		bool IsLoaded() const;
 	private:

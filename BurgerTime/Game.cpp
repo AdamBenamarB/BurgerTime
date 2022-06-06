@@ -1,20 +1,15 @@
 #include "Game.h"
 
-#include "SceneManager.h"
-#include "Level.h"
-#include "PeterPepper.h"
-#include "PointsComponent.h"
-#include "PointsDisplayComponent.h"
-#include "Scene.h"
-#include "GameObject.h"
-#include "ResourceManager.h"
-#include "TextComponent.h"
+#include "LevelLoader.h"
+#include "NextScreen.h"
 
 void Game::LoadGame() const
 {
+	NextScreen{};
+	//LevelLoader::LoadLevel("../Data/Levels/level1.json");
 
-	auto& scene = dae::SceneManager::GetInstance().CreateScene("TEST");
-	dae::Level level{ scene };
+	//auto& scene = dae::SceneManager::GetInstance().CreateScene("TEST");
+	//dae::Level level{ scene };
 
 	
 	//dae::PeterPepper peter{ scene,{0,0} };

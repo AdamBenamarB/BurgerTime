@@ -170,6 +170,7 @@
     <ClCompile Include="BottomBun.cpp" />
     <ClCompile Include="Bun.cpp" />
     <ClCompile Include="Cheese.cpp" />
+    <ClCompile Include="DeathScreen.cpp" />
     <ClCompile Include="EnemyComponent.cpp" />
     <ClCompile Include="EnemySpawnComponent.cpp" />
     <ClCompile Include="EnemySpawner.cpp" />
@@ -182,6 +183,7 @@
     <ClCompile Include="LevelLoader.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MrEgg.cpp" />
+    <ClCompile Include="NextScreen.cpp" />
     <ClCompile Include="Patty.cpp" />
     <ClCompile Include="PeterPepper.cpp" />
     <ClCompile Include="PeterPepperComponent.cpp" />
@@ -189,12 +191,14 @@
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="PlatformComponent.cpp" />
     <ClCompile Include="Tomato.cpp" />
+    <ClCompile Include="TransitionComponent.cpp" />
     <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BottomBun.h" />
     <ClInclude Include="Bun.h" />
     <ClInclude Include="Cheese.h" />
+    <ClInclude Include="DeathScreen.h" />
     <ClInclude Include="EnemyComponent.h" />
     <ClInclude Include="EnemySpawnComponent.h" />
     <ClInclude Include="EnemySpawner.h" />
@@ -205,11 +209,13 @@
     <ClInclude Include="Lettuce.h" />
     <ClInclude Include="LevelLoader.h" />
     <ClInclude Include="MrEgg.h" />
+    <ClInclude Include="NextScreen.h" />
     <ClInclude Include="Patty.h" />
     <ClInclude Include="Plate.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="PlatformComponent.h" />
     <ClInclude Include="Tomato.h" />
+    <ClInclude Include="TransitionComponent.h" />
     <ClInclude Include="Wall.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="PeterPepper.h" />

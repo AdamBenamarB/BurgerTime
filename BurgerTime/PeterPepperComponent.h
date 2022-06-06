@@ -18,6 +18,7 @@ namespace dae {
             down
         };
         PeterPepperComponent(GameObject* owner);
+        ~PeterPepperComponent();
         void Update(float deltaTime) override;
 
         void SetState(State state);
@@ -33,8 +34,8 @@ namespace dae {
         void HandleCollision(float deltaTime);
         void HandleAnim();
         State m_State = State::idle;
-        float m_Speed = 80.f;
-        float m_LadderSpeed = 100.f;
+        float m_Speed = 70.f;
+        float m_LadderSpeed = 80.f;
 
         //ANIM
         AnimatedRenderComponent* m_Anim{};
@@ -50,6 +51,6 @@ namespace dae {
             m_Hit{ false };
 
         float m_ElapsedInv{}
-        , m_m_InvTime{1.f};
+        , m_m_InvTime{2.f};
     };
 }

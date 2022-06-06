@@ -1,6 +1,7 @@
 #include "MiniginPCH.h"
 #include "SoundSystem.h"
 
+#include <SDL_mixer.h>
 #include <thread>
 
 #include "AudioClip.h"
@@ -27,7 +28,7 @@ void dae::SoundSystem::Initialize()
 int dae::SoundSystem::AddSound(std::string loc)
 {
 	m_Clips.push_back(std::make_shared<AudioClip>(loc));
-	return (unsigned int)m_Clips.size();
+	return (unsigned int)m_Clips.size()-1;
 }
 
 void dae::SoundSystem::CheckQueue()
@@ -37,16 +38,21 @@ void dae::SoundSystem::CheckQueue()
 		while (m_ToBePlayed.size() > 0)
 		{
 			m_Mutex.lock();
-			if (!m_Clips[m_ToBePlayed.back().first]->IsLoaded())
-				m_Clips[m_ToBePlayed.back().first]->Load();
-			m_Clips[m_ToBePlayed.back().first]->Play(m_ToBePlayed.back().second);
+			if (!m_Clips[m_ToBePlayed.back().id]->IsLoaded())
+				m_Clips[m_ToBePlayed.back().id]->Load();
+			m_Clips[m_ToBePlayed.back().id]->Play(m_ToBePlayed.back().volume,m_ToBePlayed.back().looping);
 			m_ToBePlayed.pop_back();
 			m_Mutex.unlock();
 		}
 	}
 }
 
-void dae::SoundSystem::Play(int id, int volume)
+void dae::SoundSystem::Play(int id, int volume,bool looping)
 {
-	m_ToBePlayed.push_back(std::make_pair(id, volume));
+	m_ToBePlayed.push_back(sound{id,volume,looping});
+}
+
+void dae::SoundSystem::StopAll()
+{
+	Mix_HaltChannel(-1);
 }

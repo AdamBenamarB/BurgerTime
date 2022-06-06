@@ -39,8 +39,8 @@ namespace dae {
         void HandleAnim() const;
         State m_State = State::left;
 
-        float m_Speed{ 80.f },//50 //30
-            m_ClimbSpeed{ 60.f },
+        float m_Speed{ 60.f },//50 //30
+            m_ClimbSpeed{ 40.f },
     		m_FallSpeed{150.f};
 
         bool m_OnPlatform{ false },

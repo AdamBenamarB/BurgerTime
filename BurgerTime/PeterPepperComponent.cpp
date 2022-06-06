@@ -4,8 +4,10 @@
 
 #include "AnimatedRenderComponent.h"
 #include "CollisionComponent.h"
+#include "GameInstance.h"
 #include "GameObject.h"
 #include "HealthComponent.h"
+#include "InputManager.h"
 #include "PlatformComponent.h"
 #include "PointsComponent.h"
 #include "Scene.h"
@@ -15,6 +17,11 @@ dae::PeterPepperComponent::PeterPepperComponent(GameObject* owner)
 	:Component(owner)
 {
 }
+
+dae::PeterPepperComponent::~PeterPepperComponent()
+{
+}
+
 
 void dae::PeterPepperComponent::Update(float deltaTime)
 {
@@ -226,7 +233,10 @@ void dae::PeterPepperComponent::Hit()
 	if(!m_Hit)
 	{
 		m_Hit = true;
-		m_GameObject->GetComponent<HealthComponent>()->Hit();
+		auto hp = m_GameObject->GetComponent<HealthComponent>();
+		hp->Hit();
+		if (hp->GetLives() == 0)
+			GameInstance::GetInstance().Died(m_GameObject->GetComponent<PointsComponent>()->GetPoints());
 	}
 }
 

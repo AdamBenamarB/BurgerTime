@@ -7,6 +7,14 @@ public:
 	void SetPlates(int amt);
 
 	void FillPlate();
+
+	void Died(int points);
+
+	int GetScore()const { return m_Score; }
+	int GetHighScore()const { return m_HighScore; }
+	void LoadNextLevel();
+
+	int GetLevelNr() { return m_LevelIdx; }
 private:
 	int m_LevelIdx{ 1 };
 
@@ -14,4 +22,5 @@ private:
 		m_FullPlates{};
 
 	int m_Score{};
+	int m_HighScore{};
 };
