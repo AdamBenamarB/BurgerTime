@@ -90,19 +90,19 @@ void Scene::DeleteObjects()
 {
 	for(auto& object:m_ToRemove)
 	{
-		for (int i{}; i < m_Objects.size(); ++i)
+		for (int i{}; i < (int)m_Objects.size(); ++i)
 			if (m_Objects[i].get() == object)
 				m_Objects.erase(m_Objects.begin()+i);
 
-		for (int i{}; i < m_ObjectsFirst.size(); ++i)
+		for (int i{}; i < (int)m_ObjectsFirst.size(); ++i)
 			if (m_ObjectsFirst[i].get() == object)
 				m_ObjectsFirst.erase(m_ObjectsFirst.begin() + i);
 
-		for (int i{}; i < m_ObjectsSecond.size(); ++i)
+		for (int i{}; i < (int)m_ObjectsSecond.size(); ++i)
 			if (m_ObjectsSecond[i].get() == object)
 				m_ObjectsSecond.erase(m_ObjectsSecond.begin() + i);
 
-		for (int i{}; i < m_ObjectsThird.size(); ++i)
+		for (int i{}; i < (int)m_ObjectsThird.size(); ++i)
 			if (m_ObjectsThird[i].get() == object)
 				m_ObjectsThird.erase(m_ObjectsThird.begin() + i);
 

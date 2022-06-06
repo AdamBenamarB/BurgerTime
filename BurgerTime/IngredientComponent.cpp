@@ -61,7 +61,7 @@ void dae::IngredientComponent::HandleCollision(float)// deltaTime)
 					++amtDropped;
 			}
 			
-			for (int i{}; i < m_Collisions.size(); ++i)
+			for (int i{}; i < (int)m_Collisions.size(); ++i)
 			{
 				if (m_Collisions[i]->IsOverlapping(obj.get()))
 					if (obj->GetTag().compare("PETER") == 0)
